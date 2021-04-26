@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>小谈SQL注入</title>
+      <link href="2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/"/>
+      <url>2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SSRF的一些tricks</title>
       <link href="2021/04/25/SSRF%E7%9A%84%E4%B8%80%E4%BA%9Btricks/"/>
       <url>2021/04/25/SSRF%E7%9A%84%E4%B8%80%E4%BA%9Btricks/</url>
@@ -109,9 +122,9 @@
       
         <tags>
             
-            <tag> Linux </tag>
-            
             <tag> 奇技淫巧 </tag>
+            
+            <tag> Linux </tag>
             
         </tags>
       
