@@ -14,9 +14,10 @@
 <meta property="og:description" content="PHP-Parser👴想写一个自动化寻找 php 反序列化链的小玩意儿。 最开始写项目的驱动是黄总说要准备国赛的项目赛，然后表示“今年不能像去年一样鸽掉了”，再然后在一次开会上，双方也是相视一笑：“嘿嘿，嘿嘿”，也就这么搁置下来了。然后说要我们准备好带好下一届，让他们搞，然后看了看这群兔崽子，彳亍……还远着。然后现在是确实自己有了想搞的动力（原因不明），突然，欸就很想搞了，所以就再捡起来。 但是">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-04-27T08:10:40.000Z">
-<meta property="article:modified_time" content="2021-04-27T10:47:40.299Z">
+<meta property="article:modified_time" content="2021-04-27T15:35:16.897Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="PHP">
+<meta property="article:tag" content="PROJECT">
 <meta name="twitter:card" content="summary">
     
     
@@ -113,7 +114,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-Parser"><span class="toc-number">1.</span> <span class="toc-text">PHP-Parser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%90%9E"><span class="toc-number">1.2.</span> <span class="toc-text">开搞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本组成语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">解析</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-Parser"><span class="toc-number">1.</span> <span class="toc-text">PHP-Parser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%90%9E"><span class="toc-number">1.2.</span> <span class="toc-text">开搞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本组成语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E8%BD%AC%E5%82%A8"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">节点转储</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -148,7 +149,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/PHP/" rel="tag">PHP</a>
+        <a class="tag-link-link" href="/tags/PHP/" rel="tag">PHP</a>, <a class="tag-link-link" href="/tags/PROJECT/" rel="tag">PROJECT</a>
     </div>
 
 
@@ -185,27 +186,30 @@
 </tr>
 </thead>
 <tbody><tr>
-<td><code>ParserFactory::PREFER_PHP7</code></td>
+<td>ParserFactory::PREFER_PHP7</td>
 <td>尝试将代码解析为PHP7。如果失败，请尝试将其解析为PHP 5</td>
 </tr>
 <tr>
-<td><code>ParserFactory::PREFER_PHP5</code></td>
+<td>ParserFactory::PREFER_PHP5</td>
 <td>尝试将代码解析为PHP5。如果失败，请尝试将其解析为PHP 7</td>
 </tr>
 <tr>
-<td><code>ParserFactory::ONLY_PHP7</code></td>
+<td>ParserFactory::ONLY_PHP7</td>
 <td>将代码解析为PHP7</td>
 </tr>
 <tr>
-<td><code>ParserFactory::ONLY_PHP5</code></td>
+<td>ParserFactory::ONLY_PHP5</td>
 <td>将代码解析为PHP5</td>
 </tr>
 </tbody></table>
 <p>除非有更好的选择，一般默认用 <code>PREFER_PHP7</code>，<code>create()</code> 方法可以选择性地接受 <code>Lexer</code> 作为第二个参数，这个我们姑且不做研究。</p>
 <p>然后，我们可以把我们需要 AST 化的 PHP 代码传递给 parse 方法，如果遇到了语法错误，将会抛出 <code>PhpParser\Error</code> 异常：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">Error</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">ParserFactory</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$code</span> = &lt;&lt;&lt;<span class="string">&#x27;CODE&#x27;</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">printLine</span>(<span class="params"><span class="variable">$msg</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$msg</span>, <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line">printLine(<span class="string">&#x27;Hello World!!!&#x27;</span>);</span><br><span class="line">CODE;</span><br><span class="line"></span><br><span class="line"><span class="variable">$parser</span> = (<span class="keyword">new</span> ParserFactory)-&gt;create(ParserFactory::PREFER_PHP7);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$stmts</span> = <span class="variable">$parser</span>-&gt;parse(<span class="variable">$code</span>);</span><br><span class="line">    <span class="comment">// $stmts is an array of statement nodes</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Error</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Parse Error: &#x27;</span>, <span class="variable">$e</span>-&gt;getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">Error</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">ParserFactory</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$code</span> = &lt;&lt;&lt;<span class="string">&#x27;CODE&#x27;</span></span><br><span class="line"><span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="number">1</span> + <span class="number">1</span>; <span class="meta">?&gt;</span></span><br><span class="line">CODE;</span><br><span class="line"></span><br><span class="line"><span class="variable">$parser</span> = (<span class="keyword">new</span> ParserFactory)-&gt;create(ParserFactory::PREFER_PHP7);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="variable">$stmts</span> = <span class="variable">$parser</span>-&gt;parse(<span class="variable">$code</span>);</span><br><span class="line">    <span class="comment">// $stmts is an array of statement nodes</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (<span class="built_in">Error</span> <span class="variable">$e</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Parse Error: &#x27;</span>, <span class="variable">$e</span>-&gt;getMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>一个 parser 实例可以重复使用以解析多个文件。</p>
+<h4 id="节点转储"><a href="#节点转储" class="headerlink" title="节点转储"></a>节点转储</h4><p>如果要以人可读的方式去转储 AST 的话，可以使用 <code>NodeDumper</code>；</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">NodeDumper</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$nodeDumper</span> = <span class="keyword">new</span> NodeDumper;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$nodeDumper</span>-&gt;dump(<span class="variable">$stmts</span>), <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+
 
   </div>
 </article>
@@ -235,7 +239,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-Parser"><span class="toc-number">1.</span> <span class="toc-text">PHP-Parser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%90%9E"><span class="toc-number">1.2.</span> <span class="toc-text">开搞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本组成语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">解析</span></a></li></ol></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PHP-Parser"><span class="toc-number">1.</span> <span class="toc-text">PHP-Parser</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">1.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E6%90%9E"><span class="toc-number">1.2.</span> <span class="toc-text">开搞</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">基本组成语法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%95%E5%85%A5"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">引入</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E8%BD%AC%E5%82%A8"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">节点转储</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
