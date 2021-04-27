@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>关于PHP-AST这件事</title>
+      <link href="2021/04/27/%E5%85%B3%E4%BA%8EPHP-AST%E8%BF%99%E4%BB%B6%E4%BA%8B/"/>
+      <url>2021/04/27/%E5%85%B3%E4%BA%8EPHP-AST%E8%BF%99%E4%BB%B6%E4%BA%8B/</url>
+      
+        <content type="html"><![CDATA[<h1 id="PHP-Parser"><a href="#PHP-Parser" class="headerlink" title="PHP-Parser"></a>PHP-Parser</h1><p>想写一个自动化寻找 php 反序列化链的小玩意儿。</p><p>最开始写项目的驱动是黄总说要准备国赛的项目赛，然后表示“今年不能像去年一样鸽掉了”，再然后在一次开会上，双方也是相视一笑：“嘿嘿，嘿嘿”，也就这么搁置下来了。然后说要我们准备好带好下一届，让他们搞，然后看了看这群兔崽子，彳亍……还远着。然后现在是确实自己有了想搞的动力（原因不明），突然，欸就很想搞了，所以就再捡起来。</p><p>但是对于大概的项目流程还是蛮不理解，又是自己一个人搞，就先摸索研究一下。在网上找了很久找到了 <code>PHP-Parser </code> 这个工具，是专门做 PHP AST 的，简单介绍一下吧</p><hr><p>PHP-Parser 的项目主页是 <a href="https://github.com/nikic/PHP-Parser%E3%80%82%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%A4%9A%E7%89%88%E6%9C%AC%E7%9A%84">https://github.com/nikic/PHP-Parser。可以对多版本的</a> PHP 进行完美解析，生成一个抽象语法树</p><p>对于词法分析，PHP 有个内置函数 <code>token_get_all()</code> 可以用来获取 TOKENS，作为语法分析的输入，这个开源项目也是用的 <code>token_get_all()</code> 生成的 token 流</p><blockquote><p>不过话说回来，AST，即 Abstract Syntax Tree，也就是抽象语法树，它是源代码语法结构的一种抽象表示，可以将你所写的的代码用树状结构化表现出来</p></blockquote><hr><p>那么话不多说，直接开整吧</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>可以使用 PHP 的包管理工具 composer 添加，在项目目录执行命令 <code>php composer.phar require nikic/php-parser</code> 即可，如果没有下载 composer，就先执行 <code>curl -s http://getcomposer.org/installer | php</code> 来安装。</p><h2 id="开搞"><a href="#开搞" class="headerlink" title="开搞"></a>开搞</h2><p>跟着<a href="https://github.com/nikic/PHP-Parser/tree/master/doc">官方文档</a> 学了。</p><h3 id="基本组成语法"><a href="#基本组成语法" class="headerlink" title="基本组成语法"></a>基本组成语法</h3><h4 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h4><p>如果要使用这个库的话，首先要将 composer 生成的自动装带器给包含进来，可以使用 <code>require &#39;path/to/vendor/autoload.php&#39;;</code>。</p><p>另外，你可以把 <code>xdebug.max_nesting_level</code> 设置为更高的值：<code>ini_set(&#39;xdebug.max_nesting_level&#39;, 3000);</code>。</p><p>这样可以确保遍历高度嵌套的节点树时不会出现错误，但是最好完全禁用 Xdebug，因为它很容易使该库的运行速度慢五倍以上。</p><h4 id="解析"><a href="#解析" class="headerlink" title="解析"></a>解析</h4><p>我们可以创造一个解析器实例：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> <span class="title">PhpParser</span>\<span class="title">ParserFactory</span>;</span><br><span class="line"><span class="variable">$parser</span> = (<span class="keyword">new</span> ParserFactory)-&gt;create(ParserFactory::PREFER_PHP7);</span><br></pre></td></tr></table></figure><p>这个工厂类接受一个参数以区别对待不同版本的 PHP：</p><table><thead><tr><th>Kind</th><th>Behavior</th></tr></thead><tbody><tr><td><code>ParserFactory::PREFER_PHP7</code></td><td>尝试将代码解析为PHP7。如果失败，请尝试将其解析为PHP 5</td></tr><tr><td><code>ParserFactory::PREFER_PHP5</code></td><td>尝试将代码解析为PHP5。如果失败，请尝试将其解析为PHP 7</td></tr><tr><td><code>ParserFactory::ONLY_PHP7</code></td><td>将代码解析为PHP7</td></tr><tr><td><code>ParserFactory::ONLY_PHP5</code></td><td>将代码解析为PHP5</td></tr></tbody></table><p>除非有更好的选择，一般默认用 <code>PREFER_PHP7</code>。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小谈SQL注入</title>
       <link href="2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/"/>
       <url>2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/</url>
