@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>JustTest</title>
+      <link href="2021/04/27/JustTest/"/>
+      <url>2021/04/27/JustTest/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-number">1</span>;<span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>小谈SQL注入</title>
       <link href="2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/"/>
       <url>2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/</url>
