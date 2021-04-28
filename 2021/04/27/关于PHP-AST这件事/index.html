@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/04/28/8YoSePjMbZUhdXm.png">
 <meta property="article:published_time" content="2021-04-27T08:10:40.000Z">
-<meta property="article:modified_time" content="2021-04-28T08:05:03.227Z">
+<meta property="article:modified_time" content="2021-04-28T08:08:49.856Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="PROJECT">
@@ -224,22 +224,22 @@
 <p>如果想要快速获取 AST 中某些语法的表达方式的话，这样就很可。</p>
 <h4 id="节点🌳结构"><a href="#节点🌳结构" class="headerlink" title="节点🌳结构"></a>节点🌳结构</h4><p>观察上面的节点转储，我们可以发现上面代码中的 <code>$stms</code> 是两个节点的数组，一个 <code>Stmt_Function</code> 和一个 <code>Stmt_Expression</code> 节点，它们所对应的类名称为：</p>
 <ul>
-<li>Stmt_Function -&gt; PhpParser\Node\Stmt\Function_</li>
-<li>Stmt_Expression -&gt; PhpParser\Node\Stmt\Expression</li>
+<li><code>Stmt_Function</code> -&gt; <code>PhpParser\Node\Stmt\Function_</code></li>
+<li><code>Stmt_Expression</code> -&gt; <code>PhpParser\Node\Stmt\Expression</code></li>
 </ul>
 <p>可能有人注意到了 Function 类的最后面多了一个 <code>_</code>，但是 Function 是一个保留关键字，该库中的许多节点类名称都带有尾随 <code>_</code>，以避免与关键字冲突。</p>
 <p>因为 PHP 是一种大型语言，所以大概有140多个不同的节点，为了更好地使用它们，将它们分为了三类：</p>
 <ul>
-<li>PhpParser\Node\Stmt 是语句节点，即不返回值并且不能出现在表达式中的语言构造，例如类定义就是一个语句，因为它没有返回值所以我们不能构造像 <code>func(class A &#123;&#125;);</code> 这样的语句</li>
+<li><code>PhpParser\Node\Stmt</code> 是语句节点，即不返回值并且不能出现在表达式中的语言构造，例如类定义就是一个语句，因为它没有返回值所以我们不能构造像 <code>func(class A &#123;&#125;);</code> 这样的语句</li>
 </ul>
 <ul>
-<li>PhpParser\Node\Expr 是表达式节点，即返回值的语言构造，因此可以在其他表达式中出现，表达式的实例如：<ul>
-<li><code>$var</code> ( PhpParser\Node\Expr\Variable )</li>
-<li><code>func()</code> ( PhpParser\Node\Expr\FuncCall )</li>
+<li><code>PhpParser\Node\Expr</code> 是表达式节点，即返回值的语言构造，因此可以在其他表达式中出现，表达式的实例如：<ul>
+<li><code>$var</code> (<code>PhpParser\Node\Expr\Variable</code>)</li>
+<li><code>func()</code> (<code>PhpParser\Node\Expr\FuncCall</code>)</li>
 </ul>
 </li>
-<li>PhpParser\Node\Scalar 是表示标量值的节点，比如 <code>&#39;string&#39;</code> ( PhpParser\Node\Scalar\String_ )，<code>0</code> ( PhpParser\Node\Scalar\LNumber ） 或者魔术常数比如 <code>__FILE__</code> ( PhpParser\Node\Scalar\MagicConst\File )，所有的PhpParser\Node\Scalars 都扩展了 PhpParser\Node\Expr，因为标量也是表达式。</li>
-<li>这两个组都不存在某些节点，比如名称（ PhpParser\Node\Name ）和调用参数（ PhpParser\Node\Arg）的节点。</li>
+<li><code>PhpParser\Node\Scalar</code> 是表示标量值的节点，比如 <code>&#39;string&#39;</code> (<code>PhpParser\Node\Scalar\String_</code>)，<code>0</code> (<code>PhpParser\Node\Scalar\LNumber</code>）或者魔术常数比如 <code>__FILE__</code> (<code>PhpParser\Node\Scalar\MagicConst\File</code>)，所有的<code>PhpParser\Node\Scalars</code>都扩展了<code>PhpParser\Node\Expr</code>，因为标量也是表达式。</li>
+<li>这两个组都不存在某些节点，比如名称（<code>PhpParser\Node\Name</code>）和调用参数（<code>PhpParser\Node\Arg</code>）的节点。</li>
 </ul>
 
   </div>
