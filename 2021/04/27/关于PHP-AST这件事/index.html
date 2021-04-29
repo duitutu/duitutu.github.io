@@ -15,7 +15,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/04/28/8YoSePjMbZUhdXm.png">
 <meta property="article:published_time" content="2021-04-27T08:10:40.000Z">
-<meta property="article:modified_time" content="2021-04-28T08:08:49.856Z">
+<meta property="article:modified_time" content="2021-04-28T08:58:39.806Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="PHP">
 <meta property="article:tag" content="PROJECT">
@@ -86,8 +86,6 @@
     <br/>
     <span id="actions">
       <ul>
-        
-        <li><a class="icon" aria-label="Previous post " href="/2021/04/27/%E4%B8%80%E6%AC%A1XX%E7%89%A9%E8%B5%84%E5%85%AC%E5%8F%B8%E5%8A%9E%E5%85%AC%E7%BD%91%E5%BB%BA%E8%AE%BE%E6%A8%A1%E6%8B%9F%E9%83%A8%E7%BD%B2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post " href="/2021/04/26/%E5%B0%8F%E8%B0%88SQL%E6%B3%A8%E5%85%A5/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -241,6 +239,7 @@
 <li><code>PhpParser\Node\Scalar</code> 是表示标量值的节点，比如 <code>&#39;string&#39;</code> (<code>PhpParser\Node\Scalar\String_</code>)，<code>0</code> (<code>PhpParser\Node\Scalar\LNumber</code>）或者魔术常数比如 <code>__FILE__</code> (<code>PhpParser\Node\Scalar\MagicConst\File</code>)，所有的<code>PhpParser\Node\Scalars</code>都扩展了<code>PhpParser\Node\Expr</code>，因为标量也是表达式。</li>
 <li>这两个组都不存在某些节点，比如名称（<code>PhpParser\Node\Name</code>）和调用参数（<code>PhpParser\Node\Arg</code>）的节点。</li>
 </ul>
+<p><code>Node\Stmt\Expression</code>节点有点令人迷惑，因为它既有术语 statement 又有 expression，这个节点有别于被称为 <code>Node\Expr</code> 的 expr，是一个由表达式 <code>Node\Stmt\Expression</code> 代表的包含 expr 作为子节点的 expression statement。</p>
 
   </div>
 </article>
