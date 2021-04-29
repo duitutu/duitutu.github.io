@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>2021_Blue_Hat_WP</title>
+      <link href="2021/04/29/2021-Blue-Hat-WP/"/>
+      <url>2021/04/29/2021-Blue-Hat-WP/</url>
+      
+        <content type="html"><![CDATA[<p>怎么说呢，比赛安排在周四，没啥时间打，队友们都上课去了，我寝室也有事情，所以这次比赛就这样了，打得不好，但是赛后还是要复现一下。</p><h1 id="web1-Ball-sigin"><a href="#web1-Ball-sigin" class="headerlink" title="web1 Ball_sigin"></a>web1 Ball_sigin</h1><p>签到题，js 游戏，没看。</p><p>真的是玩游戏，没事了。</p><h1 id="web2-one-Pointer-php"><a href="#web2-one-Pointer-php" class="headerlink" title="web2 one_Pointer_php"></a>web2 one_Pointer_php</h1><p>php，最终目的 disable_function，不会，等一波赛后 WP 复现了。</p><p><code>user.php</code></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line"><span class="keyword">public</span> <span class="variable">$count</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p><code>add_api.php</code></p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;user.php&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$user</span>=unserialize(<span class="variable">$_COOKIE</span>[<span class="string">&quot;data&quot;</span>]))&#123;</span><br><span class="line"><span class="variable">$count</span>[++<span class="variable">$user</span>-&gt;count]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$count</span>[]=<span class="number">1</span>)&#123;</span><br><span class="line"><span class="variable">$user</span>-&gt;count+=<span class="number">1</span>;</span><br><span class="line">setcookie(<span class="string">&quot;data&quot;</span>,serialize(<span class="variable">$user</span>));</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&quot;backdoor&quot;</span>]);</span><br><span class="line">&#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="variable">$user</span>=<span class="keyword">new</span> User;</span><br><span class="line"><span class="variable">$user</span>-&gt;count=<span class="number">1</span>;</span><br><span class="line">setcookie(<span class="string">&quot;data&quot;</span>,serialize(<span class="variable">$user</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure><p>可以注意到我们需要执行 eval，但是我们先要使 <code>$count=1</code> 返回一个 false，怎样才能让一个不是赋 0 的赋值语句返回 false 呢……</p><p>想到了溢出，关于 <code>$count[]=1</code>，我们可以发现这样一个有趣的现象：</p><p><img src="https://i.loli.net/2021/04/29/IetDslwnc62dPm5.png"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Write Up </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>关于PHP-AST这件事</title>
       <link href="2021/04/27/%E5%85%B3%E4%BA%8EPHP-AST%E8%BF%99%E4%BB%B6%E4%BA%8B/"/>
       <url>2021/04/27/%E5%85%B3%E4%BA%8EPHP-AST%E8%BF%99%E4%BB%B6%E4%BA%8B/</url>
