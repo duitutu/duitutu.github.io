@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/30/WM2oOZxlL6GhHQ9.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/30/waLhi9n3coeWUAC.png">
 <meta property="article:published_time" content="2021-04-29T07:51:45.000Z">
-<meta property="article:modified_time" content="2021-04-30T05:08:36.530Z">
+<meta property="article:modified_time" content="2021-04-30T08:02:31.145Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="Write Up">
 <meta name="twitter:card" content="summary">
@@ -91,6 +91,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" aria-label="Previous post " href="/2021/04/30/%E9%97%B2%E8%B0%88/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" aria-label="Next post " href="/2021/04/27/%E5%85%B3%E4%BA%8EPHP-AST%E8%BF%99%E4%BB%B6%E4%BA%8B/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -184,6 +186,8 @@
 <p><img src="https://i.loli.net/2021/04/29/YEx4eDXmy8AbfrL.png"></p>
 <p>success，ok，看看 <code>disable_function</code> 吧：</p>
 <p><img src="https://i.loli.net/2021/04/29/LCEiHt2A3NUDTsP.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">disable_classes: Exception,SplDoublyLinkedList,Error,ErrorException,ArgumentCountError,ArithmeticError,AssertionError,DivisionByZeroError,CompileError,ParseError,TypeError,ValueError,UnhandledMatchError,ClosedGeneratorException,LogicException,BadFunctionCallException,BadMethodCallException,DomainException,InvalidArgumentException,LengthException,OutOfRangeException,PharException,ReflectionException,RuntimeException,OutOfBoundsException,OverflowException,PDOException,RangeException,UnderflowException,UnexpectedValueException,JsonException,SodiumException</span><br><span class="line">disable_functions: stream_socket_client,fsockopen,putenv,pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,iconv,system,exec,shell_exec,popen,proc_open,passthru,symlink,link,syslog,imap_open,dl,mail,error_log,debug_backtrace,debug_print_backtrace,gc_collect_cycles,array_merge_recursive</span><br></pre></td></tr></table></figure>
+
 <p>好狠，之前 @LemonPrefect 师傅和👴说他觉得可以试试反射类：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> ReflectionClass(system(<span class="string">&#x27;calc&#x27;</span>)()) ;</span><br><span class="line"><span class="variable">$count</span>[++<span class="variable">$a</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$count</span>[]=<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;No&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Yes&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
