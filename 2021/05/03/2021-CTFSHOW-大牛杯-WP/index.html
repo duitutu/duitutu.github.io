@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
     <meta name="description" content="五一看了下 ctfshow 的大牛杯，web 题质量挺高的，有的题当时不会，现在复现一下吧。 easy_unserialize题目源码已经给出： 12345678910111213141516171819202122232425262728293031323334353637&lt;?php&#x2F;*# -*- coding: utf-8 -*-# @Author: h1xa# @Date:   202">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2021-CTFSHOW-大牛杯-WP">
+<meta property="og:title" content="2021_CTFSHOW_大牛杯_WP">
 <meta property="og:url" content="http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/index.html">
 <meta property="og:site_name" content="Du1">
 <meta property="og:description" content="五一看了下 ctfshow 的大牛杯，web 题质量挺高的，有的题当时不会，现在复现一下吧。 easy_unserialize题目源码已经给出： 12345678910111213141516171819202122232425262728293031323334353637&lt;?php&#x2F;*# -*- coding: utf-8 -*-# @Author: h1xa# @Date:   202">
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/03/8ZX2MJj47DwySoq.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/03/iH3UbY7pvdxM6Ck.png">
 <meta property="article:published_time" content="2021-05-03T12:38:58.000Z">
-<meta property="article:modified_time" content="2021-05-03T13:21:07.075Z">
+<meta property="article:modified_time" content="2021-05-03T15:40:27.819Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="WriteUp">
 <meta name="twitter:card" content="summary">
@@ -42,7 +42,7 @@
       
     
     <!-- title -->
-    <title>2021-CTFSHOW-大牛杯-WP</title>
+    <title>2021_CTFSHOW_大牛杯_WP</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -104,21 +104,21 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&text=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&is_video=false&description=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=2021-CTFSHOW-大牛杯-WP&body=Check out this article: http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&name=2021-CTFSHOW-大牛杯-WP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&t=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&text=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&is_video=false&description=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_CTFSHOW_大牛杯_WP&body=Check out this article: http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&name=2021_CTFSHOW_大牛杯_WP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&t=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-unserialize"><span class="toc-number">1.</span> <span class="toc-text">easy_unserialize</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-checkin"><span class="toc-number">2.</span> <span class="toc-text">web_checkin</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-unserialize"><span class="toc-number">1.</span> <span class="toc-text">easy_unserialize</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-checkin"><span class="toc-number">2.</span> <span class="toc-text">web_checkin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RealWorld-CyberShow"><span class="toc-number">3.</span> <span class="toc-text">RealWorld_CyberShow</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-CMS"><span class="toc-number">4.</span> <span class="toc-text">easy CMS</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -130,7 +130,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        2021-CTFSHOW-大牛杯-WP
+        2021_CTFSHOW_大牛杯_WP
     </h1>
 
 
@@ -185,7 +185,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?code&#x3D;?&gt;&lt;?&#x3D;&#96;nl%09&#x2F;*&#96;</span><br></pre></td></tr></table></figure>
 
 <p>听师傅说 nl 可以换成 pr，但是没测试成功（疑惑</p>
-
+<h1 id="RealWorld-CyberShow"><a href="#RealWorld-CyberShow" class="headerlink" title="RealWorld_CyberShow"></a>RealWorld_CyberShow</h1><p>像是要爆破，但是不知道 enpwd 和 key 是怎么得出来的，等一波详细wp</p>
+<h1 id="easy-CMS"><a href="#easy-CMS" class="headerlink" title="easy CMS"></a>easy CMS</h1>
   </div>
 </article>
 
@@ -214,22 +215,22 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-unserialize"><span class="toc-number">1.</span> <span class="toc-text">easy_unserialize</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-checkin"><span class="toc-number">2.</span> <span class="toc-text">web_checkin</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-unserialize"><span class="toc-number">1.</span> <span class="toc-text">easy_unserialize</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#web-checkin"><span class="toc-number">2.</span> <span class="toc-text">web_checkin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RealWorld-CyberShow"><span class="toc-number">3.</span> <span class="toc-text">RealWorld_CyberShow</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#easy-CMS"><span class="toc-number">4.</span> <span class="toc-text">easy CMS</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&text=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&is_video=false&description=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=2021-CTFSHOW-大牛杯-WP&body=Check out this article: http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&name=2021-CTFSHOW-大牛杯-WP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&t=2021-CTFSHOW-大牛杯-WP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&text=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&is_video=false&description=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_CTFSHOW_大牛杯_WP&body=Check out this article: http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&title=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&name=2021_CTFSHOW_大牛杯_WP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/&t=2021_CTFSHOW_大牛杯_WP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
