@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="五一的时候也顺便看了看 DEFCON，后来 @狠狠 要我帮忙整理一下 pwn 题附件的时候才发现一件事，pwn 题一共有 15 道，再看看 web，比赛打到一半的时候才上一道，也是唯一一道，害。 跟着国外大佬的 wp 复现了一下 threefactooorx https:&#x2F;&#x2F;buer.haus&#x2F;2021&#x2F;05&#x2F;03&#x2F;defcon-29-ctf-qualifier-3factooorx-write-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021_DEFCON_29_CTF_Qualifier_WP">
+<meta property="og:url" content="http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/index.html">
+<meta property="og:site_name" content="Du1">
+<meta property="og:description" content="五一的时候也顺便看了看 DEFCON，后来 @狠狠 要我帮忙整理一下 pwn 题附件的时候才发现一件事，pwn 题一共有 15 道，再看看 web，比赛打到一半的时候才上一道，也是唯一一道，害。 跟着国外大佬的 wp 复现了一下 threefactooorx https:&#x2F;&#x2F;buer.haus&#x2F;2021&#x2F;05&#x2F;03&#x2F;defcon-29-ctf-qualifier-3factooorx-write-">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/05/04/tRiqf6LsFH9PMGe.png">
+<meta property="article:published_time" content="2021-05-03T16:33:39.000Z">
+<meta property="article:modified_time" content="2021-05-03T16:40:44.910Z">
+<meta property="article:author" content="Du1">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/05/04/tRiqf6LsFH9PMGe.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>2021_DEFCON_29_CTF_Qualifier_WP</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<!--
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+-->
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/03/2021-CTFSHOW-%E5%A4%A7%E7%89%9B%E6%9D%AF-WP/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&text=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&is_video=false&description=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_DEFCON_29_CTF_Qualifier_WP&body=Check out this article: http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&name=2021_DEFCON_29_CTF_Qualifier_WP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&t=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#threefactooorx"><span class="toc-number">1.</span> <span class="toc-text">threefactooorx</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        2021_DEFCON_29_CTF_Qualifier_WP
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Du1</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-03T16:33:39.000Z" itemprop="datePublished">2021-05-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/WriteUp/" rel="tag">WriteUp</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>五一的时候也顺便看了看 DEFCON，后来 @狠狠 要我帮忙整理一下 pwn 题附件的时候才发现一件事，pwn 题一共有 15 道，再看看 web，比赛打到一半的时候才上一道，也是唯一一道，害。</p>
+<p>跟着国外大佬的 wp 复现了一下</p>
+<h1 id="threefactooorx"><a href="#threefactooorx" class="headerlink" title="threefactooorx"></a>threefactooorx</h1><ul>
+<li><p><a target="_blank" rel="noopener" href="https://buer.haus/2021/05/03/defcon-29-ctf-qualifier-3factooorx-write-up/">https://buer.haus/2021/05/03/defcon-29-ctf-qualifier-3factooorx-write-up/</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://graneed.hatenablog.com/entry/2021/05/03/091823">https://graneed.hatenablog.com/entry/2021/05/03/091823</a></p>
+</li>
+</ul>
+<p>只是跟着复现了一下，改天再详细补一下（经典偷懒</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> p = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;3fa&#x27;</span>);</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c1 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line">  p.append(c1);</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c2 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line">  p.append(c2);</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c3 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line">  p.append(c3);</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c4 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line">  p.append(c4);</span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> c5 = <span class="built_in">document</span>.createElement(<span class="string">&#x27;div&#x27;</span>);</span></span><br><span class="line">  p.append(c5);</span><br><span class="line">  p.removeChild(c1);</span><br><span class="line">  p.removeChild(c2);</span><br><span class="line">  p.removeChild(c3);</span><br><span class="line"><span class="javascript">  c4.setAttribute(<span class="string">&quot;AAAAAAAAAAAAAAAAAAAAAAA&quot;</span>,<span class="string">&quot;1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901&quot;</span>);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;thirdfactooor&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;4&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;40&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;3fa&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>init();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>提交即获得 flag：<code>000&#123;themorefactorsthebetter_butyouneedatleastthree&#125;</code></p>
+<p><img src="https://i.loli.net/2021/05/04/tRiqf6LsFH9PMGe.png"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#threefactooorx"><span class="toc-number">1.</span> <span class="toc-text">threefactooorx</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&text=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&is_video=false&description=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_DEFCON_29_CTF_Qualifier_WP&body=Check out this article: http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&title=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&name=2021_DEFCON_29_CTF_Qualifier_WP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/04/2021-DEFCON-29-CTF-Qualifier-WP/&t=2021_DEFCON_29_CTF_Qualifier_WP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Du1
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+         <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.bootcdn.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
