@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/03/K9Nk4YmxFnvGLlI.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/03/v7I9upJgMcy6Kdl.png">
 <meta property="article:published_time" content="2021-04-24T14:38:38.000Z">
-<meta property="article:modified_time" content="2021-05-03T07:36:17.034Z">
+<meta property="article:modified_time" content="2021-05-07T14:27:00.490Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="奇技淫巧">
@@ -292,6 +292,10 @@
 <p>算了，懒起来了，先不搞了，过段时间再整理吧。（别打👴</p>
 <p>对了，贴个 bash 对于 <code>$&#123;&#125;</code> 定义的用法吧，之后会详细说明一波</p>
 <p><img src="https://i.loli.net/2021/05/03/v7I9upJgMcy6Kdl.png"></p>
+<hr>
+<p>在 @Guoke 那里看到了他总结的一些，先偷过来，改天整理一下，有很多新姿势。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">echo $&#123;PWD:0:1&#125;</span><br><span class="line">获取变量PWD的第一个字符</span><br><span class="line">echo $&#123;PWD::1&#125;</span><br><span class="line">可以为空。为空的部分就当作0了</span><br><span class="line">echo $&#123;PWD#??????&#125;</span><br><span class="line">$&#123;变量#字符串&#125;表示在变量中。截取字符串右边的值。可以用模糊匹配。截取PWD的最后一位</span><br><span class="line">echo $&#123;PWD%??????&#125;</span><br><span class="line">$&#123;变量%字符串&#125;表示在变量中。截取字符串左边的值。可以用模糊匹配。截取PWD的第一位</span><br><span class="line">echo $&#123;#PWD&#125;</span><br><span class="line">获取变量PWD的长度</span><br><span class="line">AASAA;echo $&#123;#_&#125;</span><br><span class="line">$_。表示上一个命令的返回结果。这样就可以构造任意数字</span><br><span class="line">echo $&#123;#A&#125;</span><br><span class="line">由于变量A没定义。所以他的长度为0.</span><br><span class="line">echo $OPTIND</span><br><span class="line">这个也可以获取数字1</span><br><span class="line">&gt;B;echo $?</span><br><span class="line">最后运行的命令的结束代码,可以获得数字0</span><br><span class="line">&lt;B;echo $?</span><br><span class="line">最后运行的命令的结束代码,可以获得数字1</span><br><span class="line">echo $RANDOM</span><br><span class="line">可以生成随机数。可以配合#构造6543这几种数字。概率比较大。还可以配合截取。获得数字</span><br><span class="line">echo $&#123;#$&#125;</span><br><span class="line">$$是程序PID。#获取长度。看运气咯</span><br><span class="line">echo $&#123;#SHLVL&#125;</span><br><span class="line">SHLVL貌似是一个shell终端深度。。然后#可以获取数字1</span><br></pre></td></tr></table></figure>
+
 
   </div>
 </article>
