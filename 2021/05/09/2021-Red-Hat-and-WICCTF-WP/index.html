@@ -14,9 +14,9 @@
 <meta property="og:description" content="还在安徽，直接在酒店里看了看题。 红帽杯find_itrobots.txt，swp 源码泄露 flag 在 phpinfo frameworkYii 的反序列化链 POC： 123456789101112131415161718192021222324252627282930313233343536373839404142&lt;?phpnamespace yii\rest&amp;#123;    cl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-09T08:03:53.000Z">
-<meta property="article:modified_time" content="2021-05-09T13:42:49.445Z">
+<meta property="article:modified_time" content="2021-05-09T17:22:33.532Z">
 <meta property="article:author" content="Du1">
-<meta property="article:tag" content="-WriteUp">
+<meta property="article:tag" content="WriteUp">
 <meta name="twitter:card" content="summary">
     
     
@@ -113,7 +113,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E5%B8%BD%E6%9D%AF"><span class="toc-number">1.</span> <span class="toc-text">红帽杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find-it"><span class="toc-number">1.1.</span> <span class="toc-text">find_it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-number">1.2.</span> <span class="toc-text">framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebsiteManger"><span class="toc-number">1.3.</span> <span class="toc-text">WebsiteManger</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B4%A5%E9%97%A8%E6%9D%AF"><span class="toc-number">2.</span> <span class="toc-text">津门杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#power-cut"><span class="toc-number">2.1.</span> <span class="toc-text">power_cut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hatephp"><span class="toc-number">2.2.</span> <span class="toc-text">hatephp</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E5%B8%BD%E6%9D%AF"><span class="toc-number">1.</span> <span class="toc-text">红帽杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find-it"><span class="toc-number">1.1.</span> <span class="toc-text">find_it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-number">1.2.</span> <span class="toc-text">framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebsiteManger"><span class="toc-number">1.3.</span> <span class="toc-text">WebsiteManger</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezlight"><span class="toc-number">2.</span> <span class="toc-text">ezlight</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B4%A5%E9%97%A8%E6%9D%AF"><span class="toc-number">3.</span> <span class="toc-text">津门杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#power-cut"><span class="toc-number">3.1.</span> <span class="toc-text">power_cut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hatephp"><span class="toc-number">3.2.</span> <span class="toc-text">hatephp</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -148,7 +148,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link-link" href="/tags/WriteUp/" rel="tag">-WriteUp</a>
+        <a class="tag-link-link" href="/tags/WriteUp/" rel="tag">WriteUp</a>
     </div>
 
 
@@ -169,8 +169,8 @@
 <p>SSRF 。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">file:&#x2F;&#x2F;&#x2F;flag</span><br><span class="line">127.0.0.1</span><br></pre></td></tr></table></figure>
 
-
-
+<h1 id="ezlight"><a href="#ezlight" class="headerlink" title="ezlight"></a>ezlight</h1><p>占坑，垃圾某春秋十二点就急着关靶机，没来得及复现，先占个坑，Y1ng 师傅太QQQQQ了</p>
+<p><a target="_blank" rel="noopener" href="https://www.gem-love.com/websecurity/2763.html#0x01_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0">https://www.gem-love.com/websecurity/2763.html#0x01_%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0</a></p>
 <h1 id="津门杯"><a href="#津门杯" class="headerlink" title="津门杯"></a>津门杯</h1><h2 id="power-cut"><a href="#power-cut" class="headerlink" title="power_cut"></a>power_cut</h2><p>swp 源码泄露。</p>
 <p>反序列化，直接利用 logger 的 readfile 读取 flag，flag 被过滤，可以用双写绕过。</p>
 <p><code>poc</code>：</p>
@@ -210,7 +210,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E5%B8%BD%E6%9D%AF"><span class="toc-number">1.</span> <span class="toc-text">红帽杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find-it"><span class="toc-number">1.1.</span> <span class="toc-text">find_it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-number">1.2.</span> <span class="toc-text">framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebsiteManger"><span class="toc-number">1.3.</span> <span class="toc-text">WebsiteManger</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B4%A5%E9%97%A8%E6%9D%AF"><span class="toc-number">2.</span> <span class="toc-text">津门杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#power-cut"><span class="toc-number">2.1.</span> <span class="toc-text">power_cut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hatephp"><span class="toc-number">2.2.</span> <span class="toc-text">hatephp</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BA%A2%E5%B8%BD%E6%9D%AF"><span class="toc-number">1.</span> <span class="toc-text">红帽杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#find-it"><span class="toc-number">1.1.</span> <span class="toc-text">find_it</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#framework"><span class="toc-number">1.2.</span> <span class="toc-text">framework</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebsiteManger"><span class="toc-number">1.3.</span> <span class="toc-text">WebsiteManger</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ezlight"><span class="toc-number">2.</span> <span class="toc-text">ezlight</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B4%A5%E9%97%A8%E6%9D%AF"><span class="toc-number">3.</span> <span class="toc-text">津门杯</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#power-cut"><span class="toc-number">3.1.</span> <span class="toc-text">power_cut</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hatephp"><span class="toc-number">3.2.</span> <span class="toc-text">hatephp</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
