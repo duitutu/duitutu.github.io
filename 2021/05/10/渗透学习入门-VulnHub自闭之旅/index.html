@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-    <meta name="description" content="开始学点更有意思的，从 VlunHub 开始刷刷吧。 Me and My Girlfriend: 1记录一下踩到的坑吧，一开始一直找不到 IP 地址，后来尝试在自己的另外一台虚拟机里面 ifconfig 看看网段，再用 Nmap 找了一下。  可以发现这两个 IP，上面的是👴的虚拟机的 IP，那么下面那个就是靶机的 IP 了，而且可以发现只有它开启了 http 与 ssh 服务：  进入页面，页">
+    <meta name="description" content="开始学点更有意思的，从 VlunHub 开始刷刷吧。 所有靶场环境来源：https:&#x2F;&#x2F;www.vulnhub.com&#x2F; Me and My Girlfriend: 1记录一下踩到的坑吧，一开始一直找不到 IP 地址，后来尝试在自己的另外一台虚拟机里面 ifconfig 看看网段，再用 Nmap 找了一下。  可以发现这两个 IP，上面的是👴的虚拟机的 IP，那么下面那个就是靶机的 IP 了，而">
 <meta property="og:type" content="article">
-<meta property="og:title" content="渗透学习入门-VlunHub自闭之旅">
-<meta property="og:url" content="http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/index.html">
+<meta property="og:title" content="渗透学习入门-VulnHub自闭之旅">
+<meta property="og:url" content="http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/index.html">
 <meta property="og:site_name" content="Du1">
-<meta property="og:description" content="开始学点更有意思的，从 VlunHub 开始刷刷吧。 Me and My Girlfriend: 1记录一下踩到的坑吧，一开始一直找不到 IP 地址，后来尝试在自己的另外一台虚拟机里面 ifconfig 看看网段，再用 Nmap 找了一下。  可以发现这两个 IP，上面的是👴的虚拟机的 IP，那么下面那个就是靶机的 IP 了，而且可以发现只有它开启了 http 与 ssh 服务：  进入页面，页">
+<meta property="og:description" content="开始学点更有意思的，从 VlunHub 开始刷刷吧。 所有靶场环境来源：https:&#x2F;&#x2F;www.vulnhub.com&#x2F; Me and My Girlfriend: 1记录一下踩到的坑吧，一开始一直找不到 IP 地址，后来尝试在自己的另外一台虚拟机里面 ifconfig 看看网段，再用 Nmap 找了一下。  可以发现这两个 IP，上面的是👴的虚拟机的 IP，那么下面那个就是靶机的 IP 了，而">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://i.loli.net/2021/05/10/QfTMzclrhmnC6Od.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/10/SAcCMQ5KPG6L9hT.png">
@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/10/toaRemSF38Whsqk.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/11/JCRpyBb3YlXrcuz.png">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-10T16:32:01.608Z">
+<meta property="article:modified_time" content="2021-05-10T16:40:48.799Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -46,7 +46,7 @@
       
     
     <!-- title -->
-    <title>渗透学习入门-VlunHub自闭之旅</title>
+    <title>渗透学习入门-VulnHub自闭之旅</title>
     <!-- styles -->
     
 <link rel="stylesheet" href="/css/style.css">
@@ -107,17 +107,17 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&text=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&is_video=false&description=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=渗透学习入门-VlunHub自闭之旅&body=Check out this article: http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&name=渗透学习入门-VlunHub自闭之旅&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&t=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&text=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&is_video=false&description=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=渗透学习入门-VulnHub自闭之旅&body=Check out this article: http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&name=渗透学习入门-VulnHub自闭之旅&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&t=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -134,7 +134,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        渗透学习入门-VlunHub自闭之旅
+        渗透学习入门-VulnHub自闭之旅
     </h1>
 
 
@@ -167,6 +167,7 @@
 
   <div class="content" itemprop="articleBody">
     <p>开始学点更有意思的，从 VlunHub 开始刷刷吧。</p>
+<p>所有靶场环境来源：<a target="_blank" rel="noopener" href="https://www.vulnhub.com/">https://www.vulnhub.com/</a></p>
 <h1 id="Me-and-My-Girlfriend-1"><a href="#Me-and-My-Girlfriend-1" class="headerlink" title="Me and My Girlfriend: 1"></a>Me and My Girlfriend: 1</h1><p>记录一下踩到的坑吧，一开始一直找不到 IP 地址，后来尝试在自己的另外一台虚拟机里面 ifconfig 看看网段，再用 Nmap 找了一下。</p>
 <p><img src="https://i.loli.net/2021/05/10/QfTMzclrhmnC6Od.png"></p>
 <p>可以发现这两个 IP，上面的是👴的虚拟机的 IP，那么下面那个就是靶机的 IP 了，而且可以发现只有它开启了 http 与 ssh 服务：</p>
@@ -262,17 +263,17 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&text=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&is_video=false&description=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=渗透学习入门-VlunHub自闭之旅&body=Check out this article: http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&name=渗透学习入门-VlunHub自闭之旅&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VlunHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&t=渗透学习入门-VlunHub自闭之旅"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&text=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&is_video=false&description=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=渗透学习入门-VulnHub自闭之旅&body=Check out this article: http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&title=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&name=渗透学习入门-VulnHub自闭之旅&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/10/%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8-VulnHub%E8%87%AA%E9%97%AD%E4%B9%8B%E6%97%85/&t=渗透学习入门-VulnHub自闭之旅"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
