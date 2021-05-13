@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>提权姿势小结</title>
+      <link href="2021/05/13/%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93/"/>
+      <url>2021/05/13/%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>提权可能需要反弹 shell，因为脚本语言无法形成管道，需要创造一个管道才能进行后续的操作，比如溢出成功之后返回一个 root 权限的 shell，脚本语言执行完就完了，不会返回一个可以操作的 root shell。</p></blockquote><h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><h3 id="0x00-密码复用"><a href="#0x00-密码复用" class="headerlink" title="0x00 密码复用"></a>0x00 密码复用</h3><p>数据库 root，后台 web 密码……all may root pasword</p><h3 id="0x01-passwd-shadow"><a href="#0x01-passwd-shadow" class="headerlink" title="0x01  passwd / shadow"></a>0x01  passwd / shadow</h3><p>检测 /etc/passwd、/etc/shadow 是否可读可写：</p><p><img src="https://i.loli.net/2021/05/13/hOvzJUqNI7PlLYB.png"></p><ul><li>passwd 可写：可以将自己当前用户设置为伪 root，例如 <code>Du1:x:1001:1001</code>，将其换为 <code>Du1:x:0:0</code></li><li>shadow 可读：直接将其 root 的 hash 复制出来，爆破</li></ul><h3 id="0x02-sudo"><a href="#0x02-sudo" class="headerlink" title="0x02 sudo"></a>0x02 sudo</h3><p><code>sudo -l</code></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 提权 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>👴的养马场</title>
       <link href="2021/05/11/%F0%9F%91%B4%E7%9A%84%E5%85%BB%E9%A9%AC%E5%9C%BA/"/>
       <url>2021/05/11/%F0%9F%91%B4%E7%9A%84%E5%85%BB%E9%A9%AC%E5%9C%BA/</url>
