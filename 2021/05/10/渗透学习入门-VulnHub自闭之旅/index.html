@@ -35,8 +35,10 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/13/QHYwarZ3W9FDOJm.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/13/rCIt6ZE58MqimnY.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/13/bZHUfsgpeAzFi47.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/iEvmcHzBZ6uaL1I.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/4Bw1tUfXdkmvNQ6.png">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-13T13:33:16.228Z">
+<meta property="article:modified_time" content="2021-05-13T13:36:23.005Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -342,30 +344,41 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">show databases;</span><br><span class="line">use mysql;</span><br><span class="line">select user,password from user;</span><br></pre></td></tr></table></figure>
 
 <p>得到用户密码表：</p>
-<pre><code>+------------------+-------------------------------------------+
-| user             | password                                  |
-+------------------+-------------------------------------------+
-| root             |                                           |
-| milton           | 6450d89bd3aff1d893b85d3ad65d2ec2          |
-| root             |                                           |
-| root             |                                           |
-| debian-sys-maint | *A9523939F1B2F3E72A4306C34F225ACF09590878 |
-+------------------+-------------------------------------------+
-
-得到 milton 的密码 hash 为 6450d89bd3aff1d893b85d3ad65d2ec2，经解密得到：`thelaststraw`，彳亍… `su milton`，再输入密码，这样就提权到 milton 了。在历史命令中发现有 su 到 blumbergh 用户，寻找 blumbergh 用户密码。
-
-在 http://192.168.110.140/images/bill.png 的 exif 中存在某神秘字符串 `coffeestains`，尝试作为 blumbergh 用户密码登录。成功登录，查看一下权限：
-
-![](https://i.loli.net/2021/05/13/iEvmcHzBZ6uaL1I.png)
-
-![](https://i.loli.net/2021/05/13/4Bw1tUfXdkmvNQ6.png)
-
-可以发现 `/usr/share/cleanup/tidyup.sh` 没有写入权限，但是可以用 root 权限执行 tee 命令把反弹 shell 命令写入然后执行。（tee命令用于读取标准输入的数据，并将其内容输出成文件）
-
-看一下 tidyup.sh 里面是啥吧：
-
-```bash
-cd /var/lib/tomcat6/webapps &amp;&amp; find swingline -mindepth 1 -maxdepth 10 | xargs rm -rf
+<table>
+<thead>
+<tr>
+<th>user</th>
+<th>password</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>root</td>
+<td></td>
+</tr>
+<tr>
+<td>milton</td>
+<td>6450d89bd3aff1d893b85d3ad65d2ec2</td>
+</tr>
+<tr>
+<td>root</td>
+<td></td>
+</tr>
+<tr>
+<td>root</td>
+<td></td>
+</tr>
+<tr>
+<td>debian-sys-maint</td>
+<td>*A9523939F1B2F3E72A4306C34F225ACF09590878</td>
+</tr>
+</tbody></table>
+<p>得到 milton 的密码 hash 为 6450d89bd3aff1d893b85d3ad65d2ec2，经解密得到：<code>thelaststraw</code>，彳亍… <code>su milton</code>，再输入密码，这样就提权到 milton 了。在历史命令中发现有 su 到 blumbergh 用户，寻找 blumbergh 用户密码。</p>
+<p>在 <a target="_blank" rel="noopener" href="http://192.168.110.140/images/bill.png">http://192.168.110.140/images/bill.png</a> 的 exif 中存在某神秘字符串 <code>coffeestains</code>，尝试作为 blumbergh 用户密码登录。成功登录，查看一下权限：</p>
+<p><img src="https://i.loli.net/2021/05/13/iEvmcHzBZ6uaL1I.png"></p>
+<p><img src="https://i.loli.net/2021/05/13/4Bw1tUfXdkmvNQ6.png"></p>
+<p>可以发现 <code>/usr/share/cleanup/tidyup.sh</code> 没有写入权限，但是可以用 root 权限执行 tee 命令把反弹 shell 命令写入然后执行。（tee命令用于读取标准输入的数据，并将其内容输出成文件）</p>
+<p>看一下 tidyup.sh 里面是啥吧：</p>
+<pre><code class="bash">cd /var/lib/tomcat6/webapps &amp;&amp; find swingline -mindepth 1 -maxdepth 10 | xargs rm -rf
 
 每隔三分钟就会清理 webapps 目录下的所有文件，所以之前传的🐎如果不反弹 shell 的话很快就会被删掉。
 
