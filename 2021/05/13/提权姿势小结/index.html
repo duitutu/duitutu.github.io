@@ -16,7 +16,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/13/hOvzJUqNI7PlLYB.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/13/81TBora6WV4ZuzU.png">
 <meta property="article:published_time" content="2021-05-13T14:01:54.000Z">
-<meta property="article:modified_time" content="2021-05-13T17:21:28.711Z">
+<meta property="article:modified_time" content="2021-05-14T07:49:28.795Z">
 <meta property="article:author" content="Du1">
 <meta property="article:tag" content="渗透">
 <meta name="twitter:card" content="summary">
@@ -118,7 +118,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-%E5%AF%86%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 密码复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-passwd-shadow"><span class="toc-number">1.2.</span> <span class="toc-text">0x01  passwd &#x2F; shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sudo"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 sudo</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-%E5%AF%86%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 密码复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-passwd-shadow"><span class="toc-number">1.2.</span> <span class="toc-text">0x01  passwd &#x2F; shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sudo"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 sudo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">2.</span> <span class="toc-text">其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BA%A4%E4%BA%92%E5%BC%8F-shell"><span class="toc-number">2.1.</span> <span class="toc-text">获取交互式 shell</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -177,6 +177,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -l</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://i.loli.net/2021/05/13/81TBora6WV4ZuzU.png"></p>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><h3 id="获取交互式-shell"><a href="#获取交互式-shell" class="headerlink" title="获取交互式 shell"></a>获取交互式 shell</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;</span><br></pre></td></tr></table></figure>
+
 
   </div>
 </article>
@@ -206,7 +208,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-%E5%AF%86%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 密码复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-passwd-shadow"><span class="toc-number">1.2.</span> <span class="toc-text">0x01  passwd &#x2F; shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sudo"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 sudo</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">1.</span> <span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0x00-%E5%AF%86%E7%A0%81%E5%A4%8D%E7%94%A8"><span class="toc-number">1.1.</span> <span class="toc-text">0x00 密码复用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x01-passwd-shadow"><span class="toc-number">1.2.</span> <span class="toc-text">0x01  passwd &#x2F; shadow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#0x02-sudo"><span class="toc-number">1.3.</span> <span class="toc-text">0x02 sudo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E5%AE%83"><span class="toc-number">2.</span> <span class="toc-text">其它</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E4%BA%A4%E4%BA%92%E5%BC%8F-shell"><span class="toc-number">2.1.</span> <span class="toc-text">获取交互式 shell</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
